@@ -2,10 +2,10 @@
 
 class Database {
     private $driver = "mysql";
-    private $host = "localhost";
-    private $user = "id12990627_app3arnauivan";
-    private $password = "nÑ8z27mC230K15g0I88n";
-    private $database = "id12990627_db_001";
+    private $host = "localhost:3306";
+    private $user = "g3_daw2";
+    private $password = "Kcbq902_";
+    private $database = "g3_daw2";
     private $charset = "utf8";
 
     public function __construct($connectionConfig = array()) {
@@ -46,6 +46,8 @@ class Database {
 
         return $connection;
     }
+
+
 }
 
 ?>

@@ -26,13 +26,15 @@ class SignInController extends BaseController {
                <script>
                if (<?=$save?>){
                    alert("Usuari enregistrat correctament!");
+<?php
                    session_start();
-                   $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe(); 
-                   location.href = "/route";
+                   $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();
+?>
+				   location.href = location.protocol + "//" + location.hostname + "/route";
                }else{
                  alert("S'ha produït un error!!");
-                 location.href = "https://app3arnauivan.000webhostapp.com";
-           
+                 location.href = location.protocol + "//" + location.hostname + "/route";
+
                }
                </script>
 <?php
@@ -40,7 +42,7 @@ class SignInController extends BaseController {
             ?>
             <script>
               alert("S'ha produït un error, si us plau ompli tots els camps! ");
-              location.href = "https://app3arnauivan.000webhostapp.com";
+              location.href = "https://g3daw2.com";
             </script>
             <?php
           }

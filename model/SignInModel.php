@@ -1,5 +1,5 @@
 <?php
-
+// echo "string";
 require_once(__DIR__ . "/../core/BaseModel.php");
 
 class SignInModel extends BaseModel {
@@ -44,5 +44,17 @@ class SignInModel extends BaseModel {
     $db = $this->getConnection();
     return $db->query($query);
     }
+
+    public function getAllCars() {
+      $query="SELECT id, brand, model FROM car ORDER BY id ASC";
+      $db = $this->getConnection();
+      return $db->query($query);
+
+      }
 }
+
+
+
+
+
 ?>

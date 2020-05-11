@@ -185,9 +185,12 @@ $(document).ready(function () {
         let stationsObject = {}, stationsArray = [], stationsSelect = "";
         stationsObject = await getStations($("input#originLatitude").val(), $("input#originLongitude").val(), $("input#destinationLatitude").val(), $("input#destinationLongitude").val());
         stationsArray = stationsObject.stations !== null ? stationsObject.stations : [];
-
+		
         // divStationsSelect: 'div' that contains all the select of all the stations.
         let divStationsSelect = "";
+		
+		if ($("div#stations").length === 0)
+			$("div#planner").after("<div id='stations' />")
 
         $("div#stations").append("<div id='stationsHeader'>" + 
                                 "<h1>Ruta</h1>" +
@@ -216,12 +219,12 @@ $(document).ready(function () {
                 divStationsSelect.append(stationsSelect);
                 $("div#stations").append(divStationsSelect);
             });
+			
+			showOpenChargeMap();
+        	showGoogleMapsLink();
         } else {
             $("div#stations").append("<p>No es necessari realitzar cap recàrrega</p>");
         }
-
-        showOpenChargeMap();
-        showGoogleMapsLink();
     }
 
     function showOpenChargeMap() {
