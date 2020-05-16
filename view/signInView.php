@@ -17,9 +17,8 @@ require_once(__DIR__ . "/../model/SignInModel.php");
     <title>Registre usuaris</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="view/css/signup.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-
   </head>
 
 
@@ -47,7 +46,7 @@ require_once(__DIR__ . "/../model/SignInModel.php");
 
 
       <br><br><br><br><center>
-      <form action="/signIn/addNewUser" method="post">
+      <form action="/singup/uservalidation" method="post">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">
               <label class="mdl-textfield__label"  for="sample1">Correu electrònic / usuari</label>
@@ -57,10 +56,20 @@ require_once(__DIR__ . "/../model/SignInModel.php");
               <label class="mdl-textfield__label" for="sample1">Contrasenya</label>
             </div><br>
 
-            <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" name="CarnetdeConduir" placeholder="Carnet de conduir">
-              <label class="mdl-textfield__label" for="sample1">Carnet de conduir</label>
-            </div><br>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="divDrivingLicenseNumber">
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?" minlength="1" maxlength="8"> 
+              <label class="mdl-textfield__label" for="drivingLicenseNumber">Número del carnet de conduir</label>
+              <span class="mdl-textfield__error">No estàs introduïnt un número vàlid!</span>
+              <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseNumber">Introdueix tan sols en número del teu carnet de conduïr.</br>La lletra apareixerà en un camp al costat d'aquest</span>
+            </div>
+  
+
+            <div class="mdl-textfield mdl-js-textfield w-25" id="divDrivingLicenseLetter">
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseLetter" id="inputDrivingLicenseLetter" disabled="true">
+              <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseLetter">Lletra corresponent al número introduït</span>
+            </div>
+            <br>
 
             <!-- <div class="mdl-textfield mdl-js-textfield">
               <input class="mdl-textfield__input" type="text" name="MarcaYModelDeCotxe" placeholder="Marca i model de cotxe">
@@ -107,5 +116,7 @@ $usuario=new signInModel();
         </div>
       </main>
     </div>
+
+    <script src="view/js/signup.js"></script>
   </body>
 </html>

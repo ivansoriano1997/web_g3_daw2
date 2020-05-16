@@ -3,6 +3,8 @@
 require_once(__DIR__ . "/../core/BaseController.php");
 require_once(__DIR__ . "/../model/SignInModel.php");
 
+define("_IDANALYZER_API_KEY", "elqAIUDBQ4FzQASrZx0k8PYZbcIfxy02");
+
 class SignInController extends BaseController {
 
   public function __construct() {

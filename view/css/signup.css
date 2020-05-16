@@ -1,0 +1,7 @@
+div#divDrivingLicenseNumber.w-75 {
+    width: calc(300px * 0.75);
+}
+
+div#divDrivingLicenseLetter.w-25 {
+    width: calc(300px * 0.25);
+}

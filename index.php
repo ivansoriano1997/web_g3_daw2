@@ -45,5 +45,9 @@
         SignInController::addNewUser();
     });
 
+    $router->post("/singup/uservalidation", function($request) {
+        SignInController::userValidation();
+    });
+
 
 ?>
