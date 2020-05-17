@@ -26,7 +26,7 @@ $(document).ready(function() {
         event.preventDefault();
 
         if ($("input[name='drivingLicenseNumber']").val() === "") {
-            alert("Hem detectat que no has introduït el carnet de conduïr. Per tant, si no tens carnet, mai condueixis un cotxe!")
+            $('dialog')[0].showModal();
         }
 
         this.submit();

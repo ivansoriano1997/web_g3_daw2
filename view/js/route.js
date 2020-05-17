@@ -1,57 +1,60 @@
 $(document).ready(function () {
-    let _ALGOLIA_PLACES_APP_ID = "plMUVQROAZ0X";
-    let _ALGOLIA_PLACES_API_KEY = "a7f143ae9966e023d58937fec1279d5b";
-    let _OCM_API_KEY = "03e49d72-93b5-4327-998c-51f6017fbfbb";
-    let _ORS_API_KEY = "5b3ce3597851110001cf62485591cef3f97b4b9bba2cb810085b2769";
-
+    const _ALGOLIA_PLACES_APP_ID = "plMUVQROAZ0X";
+    const _ALGOLIA_PLACES_API_KEY = "a7f143ae9966e023d58937fec1279d5b";
+    const _OCM_API_KEY = "03e49d72-93b5-4327-998c-51f6017fbfbb";
+    const _ORS_API_KEY = "5b3ce3597851110001cf62485591cef3f97b4b9bba2cb810085b2769";
+ 
     const fixedOriginOptions = {
         appId: _ALGOLIA_PLACES_APP_ID,
         apiKey: _ALGOLIA_PLACES_API_KEY,
-        container: $('input#originAddress')[0]
+        container: $("input#inputOriginAddress")[0]
     };
 
     const fixedDestinationOptions = {
         appId: _ALGOLIA_PLACES_APP_ID,
         apiKey: _ALGOLIA_PLACES_API_KEY,
-        container: $('input#destinationAddress')[0]
+        container: $("input#inputDestinationAddress")[0]
     };
 
     const reconfigurableOptions = {
         aroundLatLngViaIP: true,
-        useDeviceLocation: true
+        useDeviceLocation: true,
+        language: "ca"
     }
     
     let placesOriginInstance = places(fixedOriginOptions).configure(reconfigurableOptions);
     let placesDestinationInstance = places(fixedDestinationOptions).configure(reconfigurableOptions);
 
     placesOriginInstance.on('change', function(event) {
-        $("input#originLatitude").val(event.suggestion.latlng.lat);
-        $("input#originLongitude").val(event.suggestion.latlng.lng);
+        $("input#inputOriginLatitude").val(event.suggestion.latlng.lat);
+        $("input#inputOriginLongitude").val(event.suggestion.latlng.lng);
     });
 
     placesDestinationInstance.on('change', function(event) {
-        $("input#destinationLatitude").val(event.suggestion.latlng.lat);
-        $("input#destinationLongitude").val(event.suggestion.latlng.lng);
+        $("input#inputDestinationLatitude").val(event.suggestion.latlng.lat);
+        $("input#inputDestinationLongitude").val(event.suggestion.latlng.lng);
     });
 
     placesOriginInstance.on('clear', function() {
-        $("input#originLatitude").val("");
-        $("input#originLongitude").val("");
+        $("input#inputOriginLatitude").val("");
+        $("input#inputOriginLongitude").val("");
     });
 
     placesDestinationInstance.on('clear', function() {
-        $("input#destinationLatitude").val("");
-        $("input#destinationLongitude").val("");
+        $("input#inputDestinationLatitude").val("");
+        $("input#inputDestinationLongitude").val("");
     });
 
-    $("button#plan").click(function() {
-        $("div#planner").hide();
+    $("form#planner").submit(function(event) {
+        event.preventDefault();
+
+        $(this).hide();
 
         $("div#details").show();
         showStations();
     });
 
-    async function getRoute(originLatitude, originLongitude, destinationLatitude, destinationLongitude)  {
+    async function getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude)  {
         // orsApiAddress: ORS API address. Has all the params that are needed to get the route details.
         // orsResponseObject: fetch response's Object containing all the route details.
         let orsApiAddress = "";
@@ -59,7 +62,7 @@ $(document).ready(function () {
         
         orsApiAddress = "https://api.openrouteservice.org/directions" + 
                     "?api_key=" + _ORS_API_KEY + 
-                    "&coordinates=" + encodeURI(originLongitude + "," + originLatitude + "|" + destinationLongitude + "," +  destinationLatitude) + 
+                    "&coordinates=" + encodeURI(inputOriginLongitude + "," + inputOriginLatitude + "|" + inputDestinationLongitude + "," +  inputDestinationLatitude) + 
                     "&profile=driving-car" + 
                     "&preference=recommended" +
                     "&format=json" +
@@ -85,19 +88,19 @@ $(document).ready(function () {
         } 
     }
 
-    async function getStations(originLatitude, originLongitude, destinationLatitude, destinationLongitude) {
+    async function getStations(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude) {
         // routeObject: route details.
         // routeDistance: route distance.
         // routeHasHighway: whether the route has highway or not.   
         // routeStops: stops that the car needs to do to charge its batteries.    
         let routeObject = {}, routeHasHighway = false, routeDistance = 0, routeStops = 0;
-        routeObject = await getRoute(originLatitude, originLongitude, destinationLatitude, destinationLongitude); 
+        routeObject = await getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude); 
         routeObject = routeObject.routes[0];
         routeHasHighway = routeObject.extras.waytypes.summary.findIndex(wayType => wayType.value === 1 || wayType.value === 2) > 0;
-        routeDistance = routeObject.summary.distance; // 20% more km are added to route (the original distance doesn't consider the deviations).
+        routeDistance = routeObject.summary.distance; // 20% more km are added to route (the inputOriginal distance doesn't consider the deviations).
 
         // carRange: user car's range. If the route has highways or not, get highway range or city range.
-        let carRange = routeHasHighway ? parseInt($("input#carCityRange").val()): parseInt($("input#carHighwayRange").val());
+        let carRange = routeHasHighway ? parseInt($("input#inputCarCityRange").val()): parseInt($("input#inputCarHighwayRange").val());
 
         routeStops = routeDistance >= carRange ? (Math.ceil(((routeDistance * 1.20)/ carRange) * 1.40)) : 0; // 40% more stops are added to route (to show more stations in large routes where it's difficult to find one).
         
@@ -151,15 +154,15 @@ $(document).ready(function () {
         // address: Google Maps Link with all the route's coordinates.
         let routeCoordinates = [], address = "https://www.google.com/maps/dir/";
         
-        // Add the origin's coordinates to routeCoordinates array
-        routeCoordinates.push($("input#originLatitude").val().toString() + "," + $("input#originLongitude").val().toString());
+        // Add the inputOrigin's coordinates to routeCoordinates array
+        routeCoordinates.push($("input#inputOriginLatitude").val().toString() + "," + $("input#inputOriginLongitude").val().toString());
 
         // Add stations' coordinates* to routeCoordinates array. 
         // *Get stations' coordinates from the value of the selected option of each select of stations.
         $("div#stationsSelects select").each(function() { routeCoordinates.push($(this).children("option:selected").data("coordinates")); });
 
-        // Add destination's coordinates to routeCoordinates array.
-        routeCoordinates.push($("input#destinationLatitude").val().toString() + "," + $("input#destinationLongitude").val().toString());
+        // Add inputDestination's coordinates to routeCoordinates array.
+        routeCoordinates.push($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
 
         // Generate link with all the coordinates (add all the coordinates in a string separated by '/')
         address = address.concat(routeCoordinates.join("/"));
@@ -173,7 +176,7 @@ $(document).ready(function () {
 
     function toogleStationsLoading() {
         if ($("div#stations p#stationsLoading").length === 0)
-            $("div#planner").after("<div id='stations'><p id='stationsLoading'>Obtenint les estacions. Depenent de la distancia de la ruta, el procès tardarà més temps o menys...</p>");
+            $("form#planner").after("<div id='stations'><p id='stationsLoading'>Obtenint les estacions. Depenent de la distancia de la ruta, el procès tardarà més temps o menys...</p>");
         else
             $("div#stations p#stationsLoading").hide();
     }
@@ -183,14 +186,14 @@ $(document).ready(function () {
         // stationsArray: array multidimensional with stations of each stop.
         // stationsSelect: select with the stations.
         let stationsObject = {}, stationsArray = [], stationsSelect = "";
-        stationsObject = await getStations($("input#originLatitude").val(), $("input#originLongitude").val(), $("input#destinationLatitude").val(), $("input#destinationLongitude").val());
+        stationsObject = await getStations($("input#inputOriginLatitude").val(), $("input#inputOriginLongitude").val(), $("input#inputDestinationLatitude").val(), $("input#inputDestinationLongitude").val());
         stationsArray = stationsObject.stations !== null ? stationsObject.stations : [];
 		
         // divStationsSelect: 'div' that contains all the select of all the stations.
         let divStationsSelect = "";
 		
 		if ($("div#stations").length === 0)
-			$("div#planner").after("<div id='stations' />")
+			$("form#planner").after("<div id='stations' />")
 
         $("div#stations").append("<div id='stationsHeader'>" + 
                                 "<h1>Ruta</h1>" +
@@ -231,7 +234,7 @@ $(document).ready(function () {
         let selectedSelect = this;
 
         if (!$(this).is("select"))
-            selectedSelect = $("div#planner select").first()[0];
+            selectedSelect = $("form#planner select").first()[0];
 
         let src = "https://map.openchargemap.io/?mode=embedded&latitude=" + $('option:selected', selectedSelect).data("coordinates").split(",")[0] + "&longitude=" + $('option:selected', selectedSelect).data("coordinates").split(",")[1];
 

@@ -20,7 +20,7 @@
     $router->post('/login/validation', function() {
         LoginController::login();
     });
-
+ 
 
 
     /**
@@ -30,24 +30,14 @@
         RouteController::index();
     });
 
-    /**
+    /** 
      * Sign Up
      */
-	$router->get('/signIn', function($request) {
+	$router->get('/signup', function($request) {
         SignInController::index();
     });
 
-    /*
-    *Add NewUser
-    */
-
-    $router->post('/signIn/addNewUser', function($request) {
+    $router->post("/singup/newuser", function($request) {
         SignInController::addNewUser();
     });
-
-    $router->post("/singup/uservalidation", function($request) {
-        SignInController::userValidation();
-    });
-
-
 ?>

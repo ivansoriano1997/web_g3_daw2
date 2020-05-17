@@ -60,7 +60,7 @@
 
         <div>
 
-
+ 
           <br><br><br><br><center>
 
 
@@ -80,7 +80,7 @@
                           </button>
 
                         </form>
-                        <a href="/signIn">Registre</a>
+                        <a href="/signup">Registre</a>
                   </center>
 
 

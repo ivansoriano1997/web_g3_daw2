@@ -1,9 +1,4 @@
-<?php
-
-require_once(__DIR__ . "/../model/SignInModel.php");
-
-
- ?>
+<?php require_once(__DIR__ . "/../model/SignInModel.php"); ?>
 
 <!DOCTYPE html>
 <html lang="ca" dir="ltr">
@@ -41,12 +36,11 @@ require_once(__DIR__ . "/../model/SignInModel.php");
       </div>
       <main class="mdl-layout__content">
         <div>
-
-
+ 
 
 
       <br><br><br><br><center>
-      <form action="/singup/uservalidation" method="post">
+      <form action="/singup/newuser" method="POST">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">
               <label class="mdl-textfield__label"  for="sample1">Correu electrònic / usuari</label>
@@ -58,15 +52,15 @@ require_once(__DIR__ . "/../model/SignInModel.php");
 
 
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="divDrivingLicenseNumber">
-              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?" minlength="1" maxlength="8"> 
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?.{8}" maxlength="8"> 
               <label class="mdl-textfield__label" for="drivingLicenseNumber">Número del carnet de conduir</label>
-              <span class="mdl-textfield__error">No estàs introduïnt un número vàlid!</span>
+              <span class="mdl-textfield__error">Has d'introduïr un número de 8 dígits</span>
               <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseNumber">Introdueix tan sols en número del teu carnet de conduïr.</br>La lletra apareixerà en un camp al costat d'aquest</span>
             </div>
   
 
             <div class="mdl-textfield mdl-js-textfield w-25" id="divDrivingLicenseLetter">
-              <input class="mdl-textfield__input" type="text" name="drivingLicenseLetter" id="inputDrivingLicenseLetter" disabled="true">
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseLetter" id="inputDrivingLicenseLetter" readonly>
               <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseLetter">Lletra corresponent al número introduït</span>
             </div>
             <br>
@@ -117,6 +111,9 @@ $usuario=new signInModel();
       </main>
     </div>
 
+    <?php require_once(__DIR__ . "/dialog/noDrivingLicenseDialog.php"); ?>
+
     <script src="view/js/signup.js"></script>
+    <script src="view/base/js/baseDialog.js"></script>
   </body>
 </html>

@@ -20,7 +20,7 @@ class SignInController extends BaseController {
                //Creamos un usuario
                $usuario=new signInModel();
                $usuario->setCorreuElectronic($_POST["CorreuElectronic"]);
-               $usuario->setCarnetdeConduir($_POST["CarnetdeConduir"]);
+               $usuario->setCarnetdeConduir($_POST["drivingLicenseNumber"] . $_POST["drivingLicenseLetter"]);
                $usuario->setMarcaYModelDeCotxe($_POST["MarcaYModelDeCotxe"]);
                $usuario->setPassword(md5($_POST["Contrasenya"]));
                $save = $usuario->addNewUser();
@@ -32,10 +32,10 @@ class SignInController extends BaseController {
                    session_start();
                    $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();
 ?>
-				   location.href = location.protocol + "//" + location.hostname + "/route";
+				   location.href = location.protocol + "//" + location.hostname + ":" + location.port + "/route";
                }else{
                  alert("S'ha produït un error!!");
-                 location.href = location.protocol + "//" + location.hostname + "/route";
+                 location.href = location.protocol + "//" + location.hostname + ":" + location.port + "/route";
 
                }
                </script>
