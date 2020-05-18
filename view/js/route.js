@@ -51,8 +51,13 @@ $(document).ready(function () {
         $(this).hide();
 
         $("div#details").show();
+        $("button.mdl-button--fab").show();
         showStations();
     });
+
+    $("button.mdl-button--fab").click(function() {
+        window.location.reload();
+    })
 
     async function getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude)  {
         // orsApiAddress: ORS API address. Has all the params that are needed to get the route details.
@@ -101,6 +106,10 @@ $(document).ready(function () {
 
         // carRange: user car's range. If the route has highways or not, get highway range or city range.
         let carRange = routeHasHighway ? parseInt($("input#inputCarCityRange").val()): parseInt($("input#inputCarHighwayRange").val());
+        let currentRange = parseInt($("input#inputCurrentRange").val());
+
+        if (currentRange < carRange)
+            carRange = carRange - currentRange;
 
         routeStops = routeDistance >= carRange ? (Math.ceil(((routeDistance * 1.20)/ carRange) * 1.40)) : 0; // 40% more stops are added to route (to show more stations in large routes where it's difficult to find one).
         

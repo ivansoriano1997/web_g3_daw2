@@ -31,10 +31,10 @@
                             </br>
                             </br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="text" id="inputCurrentRange" pattern="-?[0-9]*(\.[0-9]+)?.{8}" maxlength="3" required/>
+                                <input class="mdl-textfield__input" type="text" id="inputCurrentRange" pattern="-?[0-9]*(\.[0-9]+)?.{1,3}" maxlength="3" required/>
                                 <label class="mdl-textfield__label" for="inputCurrentRange">Quilòmetres d'autonomia</label>
                                 <span class="mdl-textfield__error">Pots introduïr fins a 999 quilòmetres d'autonomia</span>
-                                <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDestinationAddress">Introdueix el quilòmetres que et queden d'autonomia</span>
+                                <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputCurrentRange">Introdueix el quilòmetres que et queden d'autonomia</span>
                             </div>
                             </br>
                             </br>
