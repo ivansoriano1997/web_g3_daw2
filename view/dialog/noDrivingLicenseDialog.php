@@ -6,4 +6,4 @@
 
     // Import base dialog page and fill its content
     require_once(__DIR__ . "/../base/baseDialog.php"); 
-?>
+?> 

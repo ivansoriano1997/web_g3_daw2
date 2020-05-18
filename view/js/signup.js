@@ -23,13 +23,16 @@ $(document).ready(function() {
     });
 
     $('form').on('submit', function(event){
-        event.preventDefault();
 
-        if ($("input[name='drivingLicenseNumber']").val() === "") {
+        if ($("input[name='drivingLicenseNumber']").val() === "" && ($("input[type='hidden']#dialogAccepted").val() === "false")) {
             $('dialog')[0].showModal();
+            event.preventDefault();
         }
-
-        this.submit();
     });
+
+    $("dialog button.close").click(function() {
+        $("input[type='hidden']#dialogAccepted").val("true");
+        $("form").submit();
+    })
 });
 

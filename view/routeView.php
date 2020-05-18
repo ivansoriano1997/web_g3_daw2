@@ -1,4 +1,4 @@
-<?php require_once(__DIR__ . "/base/BaseLayout.php"); ?>
+<?php require_once(__DIR__ . "/base/baseLayout.php"); ?>
 
 <html>
     <head>

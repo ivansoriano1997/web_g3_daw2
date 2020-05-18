@@ -50,7 +50,7 @@
               <label class="mdl-textfield__label" for="sample1">Contrasenya</label>
             </div><br>
 
-
+      
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="divDrivingLicenseNumber">
               <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?.{8}" maxlength="8"> 
               <label class="mdl-textfield__label" for="drivingLicenseNumber">Número del carnet de conduir</label>
@@ -101,7 +101,7 @@ $usuario=new signInModel();
             <?php
 // $usuario=new signInModel();
 // echo $usuario->getAllCars();
-
+ 
               ?>
           </form>
     </center>
@@ -110,8 +110,8 @@ $usuario=new signInModel();
         </div>
       </main>
     </div>
-
     <?php require_once(__DIR__ . "/dialog/noDrivingLicenseDialog.php"); ?>
+    <input type="hidden" id="dialogAccepted" value="false">
 
     <script src="view/js/signup.js"></script>
     <script src="view/base/js/baseDialog.js"></script>
