@@ -1,0 +1,17 @@
+.imgTaulaCars{
+
+    background-repeat: no-repeat;
+
+  }
+
+
+  .imgTaula{
+    z-index:1;
+    margin-top: -30px;
+    width: 40%;
+  }
+
+  .h2taula{
+    color: #2c727c;
+    z-index:3;
+  }

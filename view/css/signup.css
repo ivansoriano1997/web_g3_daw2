@@ -1,0 +1,23 @@
+div#divDrivingLicenseNumber.w-75 {
+    width: calc(300px * 0.75);
+}
+
+div#divDrivingLicenseLetter.w-25 {
+    width: calc(300px * 0.25);
+}
+
+form{
+    margin-top: 14%;
+    padding: 30px;
+    width: 25%;
+    border: 3px solid #3F51B5;
+    border-radius: 25px;
+    background-color: #f8f9fa ;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+  }
+
+  .loginImage{
+    background: url('../../img/3339154.jpg') center / cover;
+    background-repeat: no-repeat;
+  }

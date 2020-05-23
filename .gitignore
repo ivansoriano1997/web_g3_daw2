@@ -1,0 +1,2 @@
+#.htacces file. Server has its own configuration, so don't want to change it in each deploy.
+.htacces
