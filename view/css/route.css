@@ -3,12 +3,12 @@ input.ap-input {
     border-radius: 0;
 }
 
-button.ap-input-icon { 
-    margin-bottom: 6px; 
-} 
+button.ap-input-icon {
+    margin-bottom: 6px;
+}
 
 span.ap-dropdown-menu {
-    text-align: left; 
+    text-align: left;
 }
 
 button.mdl-button--fab  {
@@ -26,7 +26,7 @@ button.mdl-button--fab  {
 @media (min-width: 575px) {
     div.mdl-textfield {
         width: 575px;
-    } 
+    }
 
     .mdl-slider__container {
         width: 600px;

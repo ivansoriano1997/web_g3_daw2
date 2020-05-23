@@ -41,7 +41,7 @@ class BaseModel {
 
     public function getById($Id) {
         $resultSet = null;
-        
+
         if ($this->databaseConnection != null) {
             $query = $this->databaseConnection->query("SELECT * FROM $this->table WHERE id = $id");
 
@@ -73,7 +73,7 @@ class BaseModel {
 
     public function deleteById($Id) {
         $resultSet = null;
-        
+
         if ($this->databaseConnection != null) {
             $query = $this->databaseConnection->query("DELETE FROM $this->table WHERE id = $id");
 

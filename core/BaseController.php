@@ -3,7 +3,7 @@
 class BaseController {
 
     public function __construct() {}
-    
+
     public function view($view, $data = array()) {
         if (!empty($data)) {
 

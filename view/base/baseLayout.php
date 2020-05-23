@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>    
+        <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     </head>
     <footer class="mdl-mega-footer">
   <div class="mdl-mega-footer__middle-section">
@@ -30,7 +30,7 @@
       <ul class="mdl-mega-footer__link-list">
         <li><a href="https://www.linkedin.com/in/ivansorianoarabia/">Ivan</a></li>
         <li><a href="https://www.linkedin.com/in/arnau-carrasco/">Arnau</a></li>
-        
+
       </ul>
     </div>
 
@@ -60,4 +60,3 @@
 
  </footer>
 </html>
-

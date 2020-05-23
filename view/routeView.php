@@ -2,24 +2,24 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="view/css/route.css"> 
-    </head>  
-    <body>   
+        <link rel="stylesheet" href="view/css/route.css">
+    </head>
+    <body>
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
          <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <span class="mdl-layout-title">Planificador de rutes</span>
             </header>
             <main class="mdl-layout__content">
-                <div class="page-content"> 
-                    <center>  
-                        <form id="planner">   
+                <div class="page-content">
+                    <center>
+                        <form id="planner">
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                <input class="mdl-textfield__input" type="search" id="inputOriginAddress" required> 
+                                <input class="mdl-textfield__input" type="search" id="inputOriginAddress" required>
                                 <label class="mdl-textfield__label" for="inputOriginAddress">Adreça d'origen</label>
                                 <span class="mdl-textfield__error">Has d'introduïr l'adreça d'origen</span>
                                 <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputOriginAddress">Introdueix l'adreça on vols que iniciï la ruta</span>
-                            </div> 
+                            </div>
                             </br>
                             </br>
                             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">

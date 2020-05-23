@@ -1,3 +1,4 @@
+
 <?php
 
 class Router
@@ -71,4 +72,5 @@ class Router
   {
     $this->resolve();
   }
+
 }

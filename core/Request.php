@@ -19,7 +19,7 @@
         private function toCamelCase($string)
         {
             $result = strtolower($string);
-                
+
             preg_match_all('/_[a-z]/', $result, $matches);
 
             foreach($matches[0] as $match)

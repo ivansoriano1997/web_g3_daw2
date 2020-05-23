@@ -3,7 +3,7 @@ $(document).ready(function () {
     const _ALGOLIA_PLACES_API_KEY = "a7f143ae9966e023d58937fec1279d5b";
     const _OCM_API_KEY = "03e49d72-93b5-4327-998c-51f6017fbfbb";
     const _ORS_API_KEY = "5b3ce3597851110001cf62485591cef3f97b4b9bba2cb810085b2769";
- 
+
     const fixedOriginOptions = {
         appId: _ALGOLIA_PLACES_APP_ID,
         apiKey: _ALGOLIA_PLACES_API_KEY,
@@ -21,7 +21,7 @@ $(document).ready(function () {
         useDeviceLocation: true,
         language: "ca"
     }
-    
+
     let placesOriginInstance = places(fixedOriginOptions).configure(reconfigurableOptions);
     let placesDestinationInstance = places(fixedDestinationOptions).configure(reconfigurableOptions);
 
@@ -64,25 +64,25 @@ $(document).ready(function () {
         // orsResponseObject: fetch response's Object containing all the route details.
         let orsApiAddress = "";
         let orsResponseObject = {};
-        
-        orsApiAddress = "https://api.openrouteservice.org/directions" + 
-                    "?api_key=" + _ORS_API_KEY + 
-                    "&coordinates=" + encodeURI(inputOriginLongitude + "," + inputOriginLatitude + "|" + inputDestinationLongitude + "," +  inputDestinationLatitude) + 
-                    "&profile=driving-car" + 
+
+        orsApiAddress = "https://api.openrouteservice.org/directions" +
+                    "?api_key=" + _ORS_API_KEY +
+                    "&coordinates=" + encodeURI(inputOriginLongitude + "," + inputOriginLatitude + "|" + inputDestinationLongitude + "," +  inputDestinationLatitude) +
+                    "&profile=driving-car" +
                     "&preference=recommended" +
                     "&format=json" +
-                    "&units=km" + 
-                    "&language=es" + 
+                    "&units=km" +
+                    "&language=es" +
                     "&extra_info=waytype" +
-                    "&geometry=true" + 
-                    "&geometry_format=geojson" + 
+                    "&geometry=true" +
+                    "&geometry_format=geojson" +
                     "&geometry_simplify=false" +
-                    "&instructions=false" + 
-                    "&roundabout_exits=false" + 
-                    "&attributes=percentage" + 
+                    "&instructions=false" +
+                    "&roundabout_exits=false" +
+                    "&attributes=percentage" +
                     "&maneuvers=true&optimized=true";
 
-        // Do API call        
+        // Do API call
         orsResponseObject = await fetch(orsApiAddress)
 
         // If the API has returned something, get the stations from the object returned.
@@ -90,16 +90,16 @@ $(document).ready(function () {
             return await orsResponseObject.json();
         } else {
             console.log("Error at getting route details!");
-        } 
+        }
     }
 
     async function getStations(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude) {
         // routeObject: route details.
         // routeDistance: route distance.
-        // routeHasHighway: whether the route has highway or not.   
-        // routeStops: stops that the car needs to do to charge its batteries.    
+        // routeHasHighway: whether the route has highway or not.
+        // routeStops: stops that the car needs to do to charge its batteries.
         let routeObject = {}, routeHasHighway = false, routeDistance = 0, routeStops = 0;
-        routeObject = await getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude); 
+        routeObject = await getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude);
         routeObject = routeObject.routes[0];
         routeHasHighway = routeObject.extras.waytypes.summary.findIndex(wayType => wayType.value === 1 || wayType.value === 2) > 0;
         routeDistance = routeObject.summary.distance; // 20% more km are added to route (the inputOriginal distance doesn't consider the deviations).
@@ -112,7 +112,7 @@ $(document).ready(function () {
             carRange = carRange - currentRange;
 
         routeStops = routeDistance >= carRange ? (Math.ceil(((routeDistance * 1.20)/ carRange) * 1.40)) : 0; // 40% more stops are added to route (to show more stations in large routes where it's difficult to find one).
-        
+
         // stationsObject: stations details.
         // nextStationCoordinates: the coordinates where the next stations should be.
         // nextStationCoordinatesIndex: routeObject coordinates array's index. This index specifies the position of the array that has the next station's coordinates.
@@ -130,16 +130,16 @@ $(document).ready(function () {
                 nextStationCoordinates = (nextStationCoordinatesIndex < routeObject.geometry.coordinates.length ? routeObject.geometry.coordinates[nextStationCoordinatesIndex] : (routeObject.geometry.coordinates[routeObject.geometry.coordinates.length - 1]));
 
                 if (nextStationCoordinates.length > 0) {
-                    ocmApiAddress = "https://api.openchargemap.io/v3/poi?key=" + _OCM_API_KEY + 
+                    ocmApiAddress = "https://api.openchargemap.io/v3/poi?key=" + _OCM_API_KEY +
                             "&output=json" +
-                            "&distanceunit=km" + 
-                            "&maxresults=5" + 
-                            "&compact=true" + 
-                            "&longitude=" + nextStationCoordinates[0] + 
-                            "&latitude=" + nextStationCoordinates[1] + 
+                            "&distanceunit=km" +
+                            "&maxresults=5" +
+                            "&compact=true" +
+                            "&longitude=" + nextStationCoordinates[0] +
+                            "&latitude=" + nextStationCoordinates[1] +
                             "&distance=" + (carRange / 1.5);    // As the distance is radial, half of car range is needed.
 
-                    // Do API call        
+                    // Do API call
                     ocmResponseObject = await fetch(ocmApiAddress)
 
                     // If the API has returned something, get the stations from the object returned.
@@ -147,13 +147,13 @@ $(document).ready(function () {
                         stationsObject.stations.push(await ocmResponseObject.json());
                     } else {
                         console.log("Error at getting the stations!");
-                    } 
+                    }
                 }
             }
 
             toogleStationsLoading();
         }
-        
+
         return stationsObject;
     }
 
@@ -162,11 +162,11 @@ $(document).ready(function () {
         // routeCoordinates (Array): add and get all the route's coordinates.
         // address: Google Maps Link with all the route's coordinates.
         let routeCoordinates = [], address = "https://www.google.com/maps/dir/";
-        
+
         // Add the inputOrigin's coordinates to routeCoordinates array
         routeCoordinates.push($("input#inputOriginLatitude").val().toString() + "," + $("input#inputOriginLongitude").val().toString());
 
-        // Add stations' coordinates* to routeCoordinates array. 
+        // Add stations' coordinates* to routeCoordinates array.
         // *Get stations' coordinates from the value of the selected option of each select of stations.
         $("div#stationsSelects select").each(function() { routeCoordinates.push($(this).children("option:selected").data("coordinates")); });
 
@@ -197,19 +197,19 @@ $(document).ready(function () {
         let stationsObject = {}, stationsArray = [], stationsSelect = "";
         stationsObject = await getStations($("input#inputOriginLatitude").val(), $("input#inputOriginLongitude").val(), $("input#inputDestinationLatitude").val(), $("input#inputDestinationLongitude").val());
         stationsArray = stationsObject.stations !== null ? stationsObject.stations : [];
-		
+
         // divStationsSelect: 'div' that contains all the select of all the stations.
         let divStationsSelect = "";
-		
+
 		if ($("div#stations").length === 0)
 			$("form#planner").after("<div id='stations' />")
 
-        $("div#stations").append("<div id='stationsHeader'>" + 
+        $("div#stations").append("<div id='stationsHeader'>" +
                                 "<h1>Ruta</h1>" +
                                 "<p>Inici: " + placesOriginInstance.getVal() + "</p>" +
                                 "<p>Destí: " + placesDestinationInstance.getVal() + "</p>" +
                                 "<p>Distància - Sense desviacions: " + stationsObject.route.distance.toFixed(2) + " - Amb desviacions (Mitjana estimada): " + (stationsObject.route.distance.toFixed(2) * 1.20) + "</p>" +
-                                "<p>Autonomia: " + stationsObject.route.range + "</p>" + 
+                                "<p>Autonomia: " + stationsObject.route.range + "</p>" +
                                 "<p>Parades: " + Math.ceil(stationsObject.route.stops) + "</p>");
 
         if (typeof stationsArray !== "undefined" && stationsArray !== null && stationsArray.length > 0) {
@@ -231,7 +231,7 @@ $(document).ready(function () {
                 divStationsSelect.append(stationsSelect);
                 $("div#stations").append(divStationsSelect);
             });
-			
+
 			showOpenChargeMap();
         	showGoogleMapsLink();
         } else {

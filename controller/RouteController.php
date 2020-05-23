@@ -9,11 +9,11 @@ class RouteController extends BaseController {
       parent::__construct();
   }
 
-  public static function index() { 
+  public static function index() {
     $routeArray = array();
 
     session_start();
-    
+
     if (isset($_SESSION["userCar"]) && $_SESSION["userCar"] != "") {
         $carModel = new CarModel();
         $car = $carModel->getOne($_SESSION["userCar"]);
