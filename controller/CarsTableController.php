@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . "/../core/BaseController.php");
+require_once(__DIR__ . "/../model/CarsTableModel.php");
 
 class CarsTableController extends BaseController {
   public function __construct() {
@@ -7,7 +8,16 @@ class CarsTableController extends BaseController {
   }
 
   public static function index() {
-    parent::view("carsTable");
+
+    $carModel = new CarModel();
+    $carsArray = $carModel->getAllCars();
+
+    $carsTableModel = new CarsTableModel();
+    $carsTableModel->setCars($carsArray);
+
+    $carsTableArray = array("cars" => $carsTableModel);
+
+    parent::view("carsTable", $carsTableArray);
   }
 }
  ?>

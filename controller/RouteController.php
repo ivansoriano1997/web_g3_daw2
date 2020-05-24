@@ -16,7 +16,7 @@ class RouteController extends BaseController {
     
     if (isset($_SESSION["userCar"]) && $_SESSION["userCar"] != "") {
         $carModel = new CarModel();
-        $carModel->getOne($_SESSION["userCar"]);
+        $carModel->getOneCar($_SESSION["userCar"]);
 
         $routeModel = new RouteModel();
         $routeModel->setCar($carModel);

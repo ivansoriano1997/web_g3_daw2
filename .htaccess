@@ -1,7 +1,5 @@
-<<<<<<< HEAD
-
 # HTID:13189339: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
-#php_value display_errors 1
+php_value display_errors 1
 # DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:13189339:
 
 RewriteEngine On
@@ -11,8 +9,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule ^(.+)$ index.php [QSA,L]
 
 # Exclude phpMyAdmin from redirect
-#RewriteCond %{REQUEST_URI} ^/phpmyadmin
-#RewriteRule ^.*$ - [NC,L]
+RewriteCond %{REQUEST_URI} ^/phpmyadmin
+RewriteRule ^.*$ - [NC,L]
 
-#RewriteCond %{REQUEST_URI} ^/phpMyAdmin
-#RewriteRule ^.*$ - [NC,L]
+RewriteCond %{REQUEST_URI} ^/phpMyAdmin
+RewriteRule ^.*$ - [NC,L]

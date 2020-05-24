@@ -28,8 +28,8 @@ class CarModel extends BaseModel {
         return $this->Model;
     }
 
-    public function setModel() {
-        return $this->Model;
+    public function setModel($model) {
+        $this->Model = $model;
     }
 
     public function getBrand() {
@@ -65,14 +65,14 @@ class CarModel extends BaseModel {
     }
 
     public function getRapidCharge() {
-        return $this->$RapidCharge;
+        return $this->RapidCharge;
     }
 
     public function setRapidCharge($rapidCharge) {
         $this->RapidCharge = $rapidCharge;
     }
 
-    public function getOne($Id) {
+    public function getOneCar($Id) {
         $resultSet = $this->getById($Id);
 
         $this->setId($resultSet->Id);
@@ -84,6 +84,27 @@ class CarModel extends BaseModel {
         $this->setRapidCharge($resultSet->RapidCharge);
         
         return $this;
+    }
+
+    public function getAllCars() {
+        $resultSet = $this->getAll();
+        $carArray = array();
+ 
+        foreach ($resultSet as $car) {
+            $carModel = new CarModel();
+
+            $carModel->setId($car->Id);
+            $carModel->setBrand($car->Brand);
+            $carModel->setModel($car->Model);
+            $carModel->setCityRange($car->CityRange);
+            $carModel->setHighwayRange($car->HighwayRange);
+            $carModel->setEfficiency($car->Efficiency);
+            $carModel->setRapidCharge(boolval($car->RapidCharge));
+
+            array_push($carArray, $carModel);
+        }
+
+        return $carArray;
     }
 }
 ?>

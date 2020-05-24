@@ -6,6 +6,7 @@
     require_once(__DIR__ . "/controller/SignInController.php");
     require_once(__DIR__ . "/controller/LoginController.php");
     require_once(__DIR__ . "/controller/RouteController.php");
+    require_once(__DIR__ . "/controller/CarsTableController.php");
 
     $router = new Router(new Request);
 
@@ -43,5 +44,12 @@
 
     $router->post("/singup/newuser", function($request) {
         SignInController::addNewUser();
+    });
+
+    /**
+     * Supported Cars
+     */
+    $router->get("/cars", function($request) {
+        CarsTableController::index();
     });
 ?>

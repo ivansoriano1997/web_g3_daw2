@@ -52,7 +52,7 @@
 
         <nav class="mdl-navigation">
 
-          <a class="mdl-navigation__link" href="/carsTable">Vehicles suportats.</a>
+          <a class="mdl-navigation__link" href="/cars">Vehicles suportats.</a>
 
           <a class="mdl-navigation__link" href="#">World.</a>
 

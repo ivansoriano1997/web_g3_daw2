@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+div.mdl-layout__drawer {
+    width: 240px;
+}
+
+div.page-content {
+    width: calc(100% - 240px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+main.mdl-layout__content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+footer.mdl-mega-footer {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    div.page-content {
+        width: 100%;
+        padding: 0;
+    }
+
+    main.mdl-layout__content {
+        overflow-y: none;
+        overflow-x: none;
+    }
+}

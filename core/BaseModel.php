@@ -31,9 +31,9 @@ class BaseModel {
 
         if ($this->databaseConnection != null) {
             $connection = $this->databaseConnection;
-            $result = $connection->query("SELECT * FROM " . $this->table  . "ORDER BY Id DESC");
+            $result = $connection->query("SELECT * FROM " . $this->table  . " ORDER BY Id ASC");
 
-            if ($queresultry->num_rows > 0) {
+            if ($result->num_rows > 0) {
                 while ($row = $result->fetch_object()) {
                     $resultSet[] = $row;
                 }

@@ -1,7 +1,3 @@
-* {
-    box-sizing: border-box;
-}
-
 div.mdl-layout button.mdl-button--fab  {
     position: fixed;
     bottom: 50px;
@@ -10,23 +6,26 @@ div.mdl-layout button.mdl-button--fab  {
 }
 
 main.mdl-layout__content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-image: url("../img/route-background.png");
     background-size: cover;                     
     background-repeat: repeat;
-    background-position: center center; 
+    background-position: center center;
 }
 
 div.page-content {
-    width: 100%;
-}
+    width: calc(100% - 240px);
+    height: 100vh;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+} 
 
 form#planner, div#stations {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
-}
+} 
 
 form#planner {
     width: 575px;
@@ -40,7 +39,6 @@ form#planner input.ap-input {
 
 form#planner div.mdl-textfield {
     width: 575px;
-    margin-bottom: 12px;
 } 
 
 form#planner button.ap-input-icon { 
@@ -55,16 +53,22 @@ form#planner div.mdl-textfield input.mdl-textfield__input, div#stations aside di
     padding-right: 36px;
 }
 
+form#planner button.mdl-button[type="submit"] {
+    margin-top: 20px;
+}
+
 
 div#stations {
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 100%;
+    height: 100%;
     padding: 30px;
 }
 
 div#stations aside {
     width: 40%;
+    height: 100%;
 }
 
 div#stations aside a#googleMapsLink {
@@ -91,6 +95,7 @@ div#stations aside ul#routeDetails li.mdl-list__item ul {
 
 div#stations aside div#divStationsList {
     width: 100%;
+    height: 90%;
 }
 
 div#stations aside div#divStationsList div.mdl-textfield {
@@ -102,7 +107,7 @@ div#stations aside div#divStationsList div.getmdl-select {
 }
 
 div#stations div#map {
-    height: 600px;
+    min-height: 600px;
     width: 60%;
     display: flex;
     align-items: center;
@@ -120,8 +125,6 @@ div#stations div#map.background-hidden {
 @media (max-width: 425px) {
     form#planner {
         width: 100%;
-        padding-top: 0;
-        padding-bottom: 0;
     }
 
     form#planner div.mdl-textfield  {
@@ -130,17 +133,16 @@ div#stations div#map.background-hidden {
 
     div#stations {
         width: 100%;
+        overflow: auto;
+        flex-direction: column;
     }
 }
 
 @media (max-width: 1024px) {
-    div#stations {
-        flex-direction: column;
-        margin-top: 100px;
-    }  
-
     div#stations aside {
         width: 100%;
+        height: auto;
+        margin: 0;
     }
 
     div#stations ul#routeDetails li.mdl-list__item {

@@ -108,8 +108,6 @@ $(document).ready(function () {
         let currentRange = (parseInt($("input#inputCurrentRange").val()) < carRange) ? parseInt($("input#inputCurrentRange").val()) : 0;
 
         routeStops = routeDistance >= carRange ? (Math.ceil(((routeDistance * 1.20) / carRange) * 1.40)) : 0; // 40% more stops are added to route (to show more stations in large routes where it's difficult to find one).
-        console.log(routeStops);
-
 
         // If the current range is below than the carRange value, then we need to add another stop the route. If it's half of the value, we add another one.
         if (currentRange < carRange)
@@ -167,13 +165,12 @@ $(document).ready(function () {
     }
 
     // Show Google Maps Link to get navigation details
-    function showGoogleMapsLink() {
+    function showGoogleMapsLink(totalStops) {
         // routeCoordinates (Array): add and get all the route's coordinates.
         // address: Google Maps Link with all the route's coordinates.
         let routeCoordinates = [], googleMapsAddress = "https://www.google.com/maps/dir/";
 
-        let chipNavigation = "";
-        let chipNavigationAnchor = "";
+        let center = $("<center />"), chipNavigation = "", chipNavigationAnchor = "";
         
         // Add the inputOrigin's coordinates to routeCoordinates array
         routeCoordinates.push($("input#inputOriginLatitude").val().toString() + "," + $("input#inputOriginLongitude").val().toString());
@@ -185,35 +182,38 @@ $(document).ready(function () {
         // Add inputDestination's coordinates to rousteCoordinates array.
         routeCoordinates.push($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
 
-        // Generate link with all the coordinates (add all the coordinates in a string separated by '/')
-        googleMapsAddress = googleMapsAddress.concat(routeCoordinates.join("/"));
+        if (routeCoordinates.length === (totalStops + 2)) {
+            // Generate link with all the coordinates (add all the coordinates in a string separated by '/')
+            googleMapsAddress = googleMapsAddress.concat(routeCoordinates.join("/"));
 
-        // Create an 'a' element or modify it (in case that exists), with all the coordinates.
-        if ($("div#stations").find("a#googleMapsLink").length === 0) {
-            chipNavigation = $("<span/>", { class: "mdl-chip mdl-chip--contact"});
+                // Create an 'a' element or modify it (in case that exists), with all the coordinates.
+                if ($("div#stations").find("a#googleMapsLink").length === 0) {
+                    chipNavigation = $("<span/>", { class: "mdl-chip mdl-chip--contact"});
 
-            chipNavigation.append($("<span/>", { 
-                class: "mdl-chip__contact mdl-color--teal mdl-color-text--white material-icons",
-                text: "map"
-            }));
+                    chipNavigation.append($("<span/>", { 
+                        class: "mdl-chip__contact mdl-color--teal mdl-color-text--white material-icons",
+                        text: "map"
+                    }));
 
-            chipNavigationAnchor = $("<a/>", {
-                id: "googleMapsLink",
-                href: googleMapsAddress,
-                target: "_blank",
-                text: "Iniciar navegació"
-            });
+                    chipNavigationAnchor = $("<a/>", {
+                        id: "googleMapsLink",
+                        href: googleMapsAddress,
+                        target: "_blank",
+                        text: "Iniciar navegació"
+                    });
 
-            chipNavigation.append(($("<span/>", { 
-                class: "mdl-chip__text",
-                html: chipNavigationAnchor
-            })));
+                    chipNavigation.append(($("<span/>", { 
+                        class: "mdl-chip__text",
+                        html: chipNavigationAnchor
+                    })));
 
-            $("div#stations aside").append(chipNavigation);
-        } else {
-            $("div#stations a#googleMapsLink").attr("href",  googleMapsAddress);
+                    $("div#stations aside").append(center.append(chipNavigation));
+
+                } else {
+                    $("div#stations a#googleMapsLink").attr("href",  googleMapsAddress);
+                }
+            }
         }
-    }
 
     function showOpenChargeMap() {
         let mapSrc = "https://map.openchargemap.io/?mode=embedded&latitude=" + $(this).data("val").split(",")[0] + "&longitude=" + $(this).data("val").split(",")[1];
@@ -286,12 +286,13 @@ $(document).ready(function () {
 
                 $.each(stations, function (stationNumber, stationObject) {
                     liStation = $("<li/>", {
-                        class: "mdl-menu__item" + ((stationNumber === 0) ? " selected" : ""),
+                        class: "mdl-menu__item",
                         "data-val": stationObject.AddressInfo.Latitude + "," + stationObject.AddressInfo.Longitude,
                         text: stationObject.AddressInfo.Title
                     });
 
                     liStation.click(showOpenChargeMap);
+                    liStation.click(function() { showGoogleMapsLink(stationsObject.route.stops) });
 
                     ulStations.append(liStation);
                 });
@@ -300,8 +301,6 @@ $(document).ready(function () {
 
                 divStationList.append(divStations);
             });
-
-            divStationList.find("ul").last().find("li").click(showGoogleMapsLink);
         }
 
         return divStationList;

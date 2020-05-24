@@ -73,7 +73,8 @@ require_once(__DIR__ . "/../model/CarModel.php");
 
       <th class="mdl-data-table__cell--non-numeric">Marca</th>
       <th>Model</th>
-      <th>Gamma de bateries</th>
+      <th>Autonomia en ciutat</th>
+      <th>Autonomia en carretera</th>
       <th>Eficiència</th>
       <th>Càrrega ràpida</th>
 
@@ -81,25 +82,20 @@ require_once(__DIR__ . "/../model/CarModel.php");
   </thead>
   <tbody>
     <?php
-    $cars = new CarModel();
-    $result = $cars->getAll();
-    while ($row = $result->fetch_assoc()) {
+      foreach ($cars->getCars() as $car) {
     ?>
       <tr>
-
-        <td class="mdl-data-table__cell--non-numeric"><?=$row['Brand']?></td>
-        <td><?=$row['Model']?></td>
-        <td><?=$row['battery_range']?></td>
-        <td><?=$row['Efficiency']?> kWh</td>
-        <td><?= $row['RapidCharge']==1?'Sí':'No';?></td>
-
-
-      </td>
+        <td class="mdl-data-table__cell--non-numeric"><?=$car->getBrand()?></td>
+        <td><?=$car->getModel()?></td>
+        <td><?=$car->getCityRange()?> km</td>
+        <td><?=$car->getHighwayRange()?> km</td>
+        <td><?=$car->getEfficiency()?> kWh</td>
+        <td><?=$car->getRapidCharge() ? 'Sí' : 'No'?></td>
     </tr>
 
     <?php
-  }
-  ?>
+      }
+    ?>
 
 </tbody>
 </table>
