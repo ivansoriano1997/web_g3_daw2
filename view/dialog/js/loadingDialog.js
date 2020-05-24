@@ -2,7 +2,12 @@ $(document).ready(function() {
     let dialog = $("dialog");
     let dialogContent = dialog.find("div.mdl-dialog__content");
 
-    let spinner = $("<center><div class='mdl-spinner mdl-js-spinner is-active'></div></center>");
+    let center = $("<center />");
+
+    let spinner = $("<div class='mdl-spinner mdl-js-spinner is-active'></div>");
     componentHandler.upgradeElement($(spinner)[0]);
-    dialogContent.append($(spinner)[0]);
+
+    center.append(spinner);
+
+    dialogContent.append($(center));
 });
