@@ -4,13 +4,13 @@
     </head>
     <body>
         <dialog class="mdl-dialog">
-            <h4 class="mdl-dialog__title"><?=$dialogTitle?></h4>
+            <h4 class="mdl-dialog__title"><?=isset($dialogTitle) ? $dialogTitle : $dialogTitle?></h4>
             <div class="mdl-dialog__content">
-            <p><?=$dialogContent?></p>
+                <p><?=isset($dialogContent) ? $dialogContent : $dialogContent?></p>
             </div>
             <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button"><?php echo isset($dialogButton) ? $dialogButton : ""; ?></button>
-            <button type="button" class="mdl-button close"><?php echo isset($dialogButtonClose) ? $dialogButtonClose : ""; ?></button>
+            <button type="button" class="mdl-button"><?=isset($dialogButton) ? $dialogButton : ""?></button>
+            <button type="button" class="mdl-button close"><?=isset($dialogButtonClose) ? $dialogButtonClose : ""?></button>
             </div>
         </dialog>
 

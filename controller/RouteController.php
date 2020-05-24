@@ -16,14 +16,14 @@ class RouteController extends BaseController {
     
     if (isset($_SESSION["userCar"]) && $_SESSION["userCar"] != "") {
         $carModel = new CarModel();
-        $car = $carModel->getOne($_SESSION["userCar"]);
-        $carModel->setCityRange($car["CityRange"]);
-        $carModel->setHighwayRange($car["HighwayRange"]);
+        $carModel->getOne($_SESSION["userCar"]);
 
         $routeModel = new RouteModel();
         $routeModel->setCar($carModel);
 
         $routeArray = array("route" => $routeModel);
+    } else {
+        header("Location: /");
     }
 
     parent::view("route", $routeArray);

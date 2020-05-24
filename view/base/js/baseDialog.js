@@ -9,6 +9,18 @@ $(document).ready(function() {
         dialog.close();
     });
 
+    $(dialog).find("mdl-dialog__title").each(function() {
+        if($(this).text() === "") {
+            $(this).hide();
+        }
+    });
+
+    $(dialog).find("mdl-dialog__content").each(function() {
+        if($(this).text() === "") {
+            $(this).hide();
+        }
+    });
+
     $(dialog).find("button").each(function() {
         if($(this).text() === "") {
             $(this).hide();

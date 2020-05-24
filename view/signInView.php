@@ -52,7 +52,7 @@
 
       
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="divDrivingLicenseNumber">
-              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?.{8}" maxlength="8"> 
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="\d{8}" maxlength="8"> 
               <label class="mdl-textfield__label" for="drivingLicenseNumber">Número del carnet de conduir</label>
               <span class="mdl-textfield__error">Has d'introduïr un número de 8 dígits</span>
               <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseNumber">Introdueix tan sols en número del teu carnet de conduïr.</br>La lletra apareixerà en un camp al costat d'aquest</span>

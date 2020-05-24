@@ -17,6 +17,10 @@
               LoginController::index();
     });
 
+    $router->get('/index.php', function() {
+        LoginController::index();
+    });
+
     $router->post('/login/validation', function() {
         LoginController::login();
     });

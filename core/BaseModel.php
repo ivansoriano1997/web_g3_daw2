@@ -11,8 +11,11 @@ class BaseModel {
         if ($table != "") {
             $this->table = strval($table);
         }
-        $this->database = new Database();
-        $this->databaseConnection = $this->database->Connect();
+        
+        $database = new Database();
+        $this->database = $database;
+
+        $this->databaseConnection = $database->Connect();
     }
 
     public function getDatabase() {
@@ -27,10 +30,11 @@ class BaseModel {
         $resultSet = null;
 
         if ($this->databaseConnection != null) {
-            $query = $this->databaseConnection->query("SELECT * FROM $this->table ORDER BY Id DESC");
+            $connection = $this->databaseConnection;
+            $result = $connection->query("SELECT * FROM " . $this->table  . "ORDER BY Id DESC");
 
-            if ($query->num_rows > 0) {
-                while ($row = $query->fetch_object()) {
+            if ($queresultry->num_rows > 0) {
+                while ($row = $result->fetch_object()) {
                     $resultSet[] = $row;
                 }
             }
@@ -43,10 +47,11 @@ class BaseModel {
         $resultSet = null;
         
         if ($this->databaseConnection != null) {
-            $query = $this->databaseConnection->query("SELECT * FROM $this->table WHERE id = $id");
+            $connection = $this->databaseConnection;
+            $result = $connection->query("SELECT * FROM " .  $this->table . " WHERE Id = $Id");
 
-            if ($query->num_rows > 0) {
-                if ($row = $query->fetch_object()) {
+            if ($result->num_rows > 0) {
+                if ($row = $result->fetch_object()) {
                     $resultSet = $row;
                 }
             }
@@ -59,10 +64,11 @@ class BaseModel {
         $resultSet;
 
         if ($this->databaseConnection != null) {
-            $query = $this->databaseConnection->query("SELECT * FROM $this->table WHERE $column = '$value'");
+            $connection = $this->databaseConnection;
+            $result = $connection->query("SELECT * FROM " .  $this->table . " WHERE $column = $value");
 
-            if ($query->num_rows > 0) {
-                if ($row = $query->fetch_object()) {
+            if ($result->num_rows > 0) {
+                if ($row = $result->fetch_object()) {
                     $resultSet = $row;
                 }
             }
@@ -75,10 +81,11 @@ class BaseModel {
         $resultSet = null;
         
         if ($this->databaseConnection != null) {
-            $query = $this->databaseConnection->query("DELETE FROM $this->table WHERE id = $id");
+            $connection = $this->databaseConnection;
+            $result = $connection->query("DELETE FROM " .  $this->table . " WHERE id = $Id");
 
             if ($query->num_rows > 0) {
-                if ($row = $query->fetch_object()) {
+                if ($row = $result->fetch_object()) {
                     $resultSet = $row;
                 }
             }
@@ -91,10 +98,11 @@ class BaseModel {
         $resultSet;
 
         if ($this->databaseConnection != null) {
-            $query = $this->databaseConnection->query("DELETE FROM $this->table WHERE $column = '$value'");
+            $connection = $this->databaseConnection;
+            $result = $connection->query("DELETE FROM " .  $this->table . "WHERE $column = $value");
 
-            if ($query->num_rows > 0) {
-                if ($row = $query->fetch_object()) {
+            if ($result->num_rows > 0) {
+                if ($row = $result->fetch_object()) {
                     $resultSet = $row;
                 }
             }
