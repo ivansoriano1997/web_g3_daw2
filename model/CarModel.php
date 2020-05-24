@@ -4,12 +4,40 @@ require_once(__DIR__ . "/../core/BaseModel.php");
 
 class CarModel extends BaseModel {
 
-    private $ID;
+    private $Id;
+    private $Brand;
+    private $Model;
     private $CityRange;
     private $HighwayRange;
+    private $Efficiency;
+    private $RapidCharge;
 
     public function __construct() {
-        parent::__construct();
+        parent::__construct("car");
+    }
+
+    public function getId() {
+        return $this->Id;
+    }
+
+    public function setId($Id) {
+        $this->Id = $Id;
+    }
+
+    public function getModel() {
+        return $this->Model;
+    }
+
+    public function setModel() {
+        return $this->Model;
+    }
+
+    public function getBrand() {
+        return $this->Brand;
+    }
+
+    public function setBrand($brand) {
+        $this->Brand = $brand;
     }
 
     public function getCityRange() {
@@ -26,21 +54,36 @@ class CarModel extends BaseModel {
 
     public function setHighwayRange($highwayRange) {
         $this->HighwayRange = $highwayRange;
-     }
-
-    public function getOne($ID) {
-        $query="SELECT battery_range As CityRange, battery_range as HighwayRange FROM car where id = '$ID'";
-    $db = $this->getConnection();
-    $get = $db->query($query);
-        $get2 = $get->fetch_assoc();
-        return $get2;
     }
 
-    public function getAll() {
-      $query="SELECT * FROM car ORDER BY id ASC";
-      $db = $this->getConnection();
-      return $db->query($query);
+    public function getEfficiency() {
+        return $this->Efficiency;
+    }
 
-      }
+    public function setEfficiency($efficiency) {
+        $this->Efficiency = $efficiency;
+    }
+
+    public function getRapidCharge() {
+        return $this->$RapidCharge;
+    }
+
+    public function setRapidCharge($rapidCharge) {
+        $this->RapidCharge = $rapidCharge;
+    }
+
+    public function getOne($Id) {
+        $resultSet = $this->getById($Id);
+
+        $this->setId($resultSet->Id);
+        $this->setBrand($resultSet->Brand);
+        $this->setModel($resultSet->Model);
+        $this->setCityRange($resultSet->CityRange);
+        $this->setHighwayRange($resultSet->HighwayRange);
+        $this->setEfficiency($resultSet->Efficiency);
+        $this->setRapidCharge($resultSet->RapidCharge);
+        
+        return $this;
+    }
 }
 ?>

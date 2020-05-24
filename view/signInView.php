@@ -34,12 +34,12 @@
           <a class="mdl-navigation__link" href="#">You?</a>
         </nav>
       </div>
-      <main class="mdl-layout__content loginImage">
+      <main class="mdl-layout__content">
         <div>
+ 
 
 
-
-      <center>
+      <br><br><br><br><center>
       <form action="/singup/newuser" method="POST">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">
@@ -50,14 +50,14 @@
               <label class="mdl-textfield__label" for="sample1">Contrasenya</label>
             </div><br>
 
-
+      
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="divDrivingLicenseNumber">
-              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="-?[0-9]*(\.[0-9]+)?.{8}" maxlength="8">
+              <input class="mdl-textfield__input" type="text" name="drivingLicenseNumber" id="inputDrivingLicenseNumber" pattern="\d{8}" maxlength="8"> 
               <label class="mdl-textfield__label" for="drivingLicenseNumber">Número del carnet de conduir</label>
               <span class="mdl-textfield__error">Has d'introduïr un número de 8 dígits</span>
               <span class="mdl-tooltip mdl-tooltip--large" data-mdl-for="inputDrivingLicenseNumber">Introdueix tan sols en número del teu carnet de conduïr.</br>La lletra apareixerà en un camp al costat d'aquest</span>
             </div>
-
+  
 
             <div class="mdl-textfield mdl-js-textfield w-25" id="divDrivingLicenseLetter">
               <input class="mdl-textfield__input" type="text" name="drivingLicenseLetter" id="inputDrivingLicenseLetter" readonly>
@@ -74,23 +74,23 @@
               <select class="mdl-textfield__input" type="text" name="MarcaYModelDeCotxe">
                 <option value="NULL">--Marca i model de cotxe--</option>
 
-                <?php
+<?php
 
-                // $usuario = SignInModel::getAllCars();
-                $usuario=new signInModel();
+// $usuario = SignInModel::getAllCars();
+$usuario=new signInModel();
 
-                $result =  $usuario->getAllCars();
-                while($row = $result->fetch_assoc()) {
+$result =  $usuario->getAllCars();
+while($row = $result->fetch_assoc()) {
 
-                $usuario=new signInModel();
-                ?>
-                    <option value="<?=$row['id']?>"><?=$row['brand']?>:&nbsp;<?=$row['model']?></option>
-                    <?php
-                }
+$usuario=new signInModel();
+//   ?>
+//      <option value="<?=$row['id']?>"><?=$row['brand']?>:&nbsp;<?=$row['model']?></option>
+//      <?php
+}
 
 
 
-                ?>
+?>
               </select>
             </div><br>
 
@@ -98,8 +98,13 @@
               Registre
             </button>
 
+            <?php
+// $usuario=new signInModel();
+// echo $usuario->getAllCars();
+ 
+              ?>
           </form>
-                </center>
+    </center>
 
 
         </div>

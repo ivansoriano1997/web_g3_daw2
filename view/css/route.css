@@ -1,34 +1,156 @@
-input.ap-input {
+* {
+    box-sizing: border-box;
+}
+
+div.mdl-layout button.mdl-button--fab  {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+    z-index: 1000;
+}
+
+main.mdl-layout__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../img/route-background.png");
+    background-size: cover;                     
+    background-repeat: repeat;
+    background-position: center center; 
+}
+
+div.page-content {
+    width: 100%;
+}
+
+form#planner, div#stations {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+}
+
+form#planner {
+    width: 575px;
+    padding: 30px 40px;
+}
+
+form#planner input.ap-input {
     height: initial;
     border-radius: 0;
 }
 
-button.ap-input-icon {
-    margin-bottom: 6px;
+form#planner div.mdl-textfield {
+    width: 575px;
+    margin-bottom: 12px;
+} 
+
+form#planner button.ap-input-icon { 
+    margin-bottom: 6px; 
+} 
+
+form#planner span.ap-dropdown-menu {
+    text-align: left; 
 }
 
-span.ap-dropdown-menu {
+form#planner div.mdl-textfield input.mdl-textfield__input, div#stations aside div#divStationsList div.getmdl-select input.mdl-textfield__input{
+    padding-right: 36px;
+}
+
+
+div#stations {
+    display: flex;
+    align-items: center;
+    width: 90%;
+    padding: 30px;
+}
+
+div#stations aside {
+    width: 40%;
+}
+
+div#stations aside a#googleMapsLink {
+    text-decoration: none;
+    color: #000;
+}
+
+div#stations aside ul#routeDetails li.mdl-list__item {
     text-align: left;
 }
 
-button.mdl-button--fab  {
-    position: absolute;
-    bottom: 50px;
-    right: 50px;
+div#stations aside ul#routeDetails li#stopsDetails {
+    overflow: visible;
 }
 
-@media (max-width: 574px) {
-    input[type='search'].mdl-textfield__input {
-        padding-right: 36px;
+div#stations aside ul#routeDetails li.mdl-list__item .mdl-list__item-icon, div#stations aside ul#routeDetails li.mdl-list__item b {
+    margin-right: 12px;
+} 
+
+div#stations aside ul#routeDetails li.mdl-list__item ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+div#stations aside div#divStationsList {
+    width: 100%;
+}
+
+div#stations aside div#divStationsList div.mdl-textfield {
+    width: 100%;
+}
+
+div#stations aside div#divStationsList div.getmdl-select {
+    display: block;
+}
+
+div#stations div#map {
+    height: 600px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+    background-image: url("../img/route-map-background.png");
+    background-size: auto 100%;                     
+    background-repeat: no-repeat;
+    background-position: center center; 
+}
+
+div#stations div#map.background-hidden {
+    background-image: none;
+}
+
+@media (max-width: 425px) {
+    form#planner {
+        width: 100%;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    form#planner div.mdl-textfield  {
+        width: 300px;
+    }
+
+    div#stations {
+        width: 100%;
     }
 }
 
-@media (min-width: 575px) {
-    div.mdl-textfield {
-        width: 575px;
+@media (max-width: 1024px) {
+    div#stations {
+        flex-direction: column;
+        margin-top: 100px;
+    }  
+
+    div#stations aside {
+        width: 100%;
     }
 
-    .mdl-slider__container {
-        width: 600px;
+    div#stations ul#routeDetails li.mdl-list__item {
+        text-align: left;
     }
+
+    div#stations div#map {
+        margin-top: 24px;
+        width: 100%;
+    }  
 }
+
+

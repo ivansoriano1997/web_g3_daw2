@@ -25,7 +25,7 @@ $(document).ready(function() {
     $('form').on('submit', function(event){
 
         if ($("input[name='drivingLicenseNumber']").val() === "" && ($("input[type='hidden']#dialogAccepted").val() === "false")) {
-            $('dialog')[0].showModal();
+            $("dialog")[0].showModal();
             event.preventDefault();
         }
     });
@@ -35,3 +35,4 @@ $(document).ready(function() {
         $("form").submit();
     })
 });
+
