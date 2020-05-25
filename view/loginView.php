@@ -12,15 +12,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!--<meta http-equiv="Content-Type" content="text/html"/>-->
-
-    <!--<base href="https://www.electromaps.com/">-->
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- <script src="controlador.js" charset="utf-8"></script> -->
+    <link rel="stylesheet" href="view/css/signup.css">
 
-    <link rel="stylesheet" href="css/index.css">
 
 
     <title>Login</title>
@@ -32,12 +27,6 @@
 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
-    <style>
-      .loginImage{
-        background: url('img/3339154.jpg') center / cover;
-        background-repeat: no-repeat;
-      }
-    </style>
 
 
   </head>

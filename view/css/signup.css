@@ -21,3 +21,9 @@ form{
     background: url('../../img/3339154.jpg') center / cover;
     background-repeat: no-repeat;
   }
+
+  @media only screen and (max-width: 600px) {
+    form {
+    width: 80%;
+    }
+  }
