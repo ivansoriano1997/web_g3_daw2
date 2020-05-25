@@ -107,32 +107,29 @@ $(document).ready(function () {
         let carRange = routeHasHighway ? parseInt($("input#inputCarCityRange").val()): parseInt($("input#inputCarHighwayRange").val());
         let currentRange = (parseInt($("input#inputCurrentRange").val()) < carRange) ? parseInt($("input#inputCurrentRange").val()) : 0;
 
-        routeStops = routeDistance >= carRange ? (Math.ceil(((routeDistance * 1.20) / carRange) * 1.40)) : 0; // 40% more stops are added to route (to show more stations in large routes where it's difficult to find one).
+        routeStops = routeDistance >= carRange ? (Math.ceil((routeDistance * 1.75) / carRange)) : 0;
 
         // If the current range is below than the carRange value, then we need to add another stop the route. If it's half of the value, we add another one.
-        if (currentRange < carRange)
-            routeStops++;
+        // if (currentRange < carRange)
+        //     routeStops++;
 
         // stationsObject: stations details.
         // nextStationCoordinates: the coordinates where the next stations should be.
         // nextStationCoordinatesIndex: routeObject coordinates array's index. This index specifies the position of the array that has the next station's coordinates.
         let stationsObject = {route: {origin: placesOriginInstance.getVal(), destination: placesDestinationInstance.getVal(), distance: routeDistance, initialRange: currentRange, fullRange: carRange, stops: routeStops}, stations: []}, 
-        nextStationCoordinates = [], nextStationCoordinatesIndex = 0;
+        nextStationCoordinates = [], nextStationCoordinatesIndex = 0//, firstStationCoordinatesIndex = 0;
 
         // ocmApiAddress: OCM API address. Has all the params that are needed to get the stations of this route.
         // ocmResponseObject: fetch response's Object containing all the stations.
         let ocmApiAddress = "", ocmResponseObject = {};
 
-        if ((routeDistance * 1.20) > currentRange) {
+        if (routeDistance > currentRange) {
             toogleStationsLoading();
 
             for(var stop = 0; stop < routeStops; stop++)  {
                 nextStationCoordinatesIndex = Math.floor((routeObject.geometry.coordinates.length / routeStops) * (stop + 1));
-
-                if (stop === 0 && (currentRange < carRange)) {
-                    nextStationCoordinatesIndex -= (routeObject.geometry.coordinates.length / (routeStops * 1.5)) * (stop + 1);
-                    nextStationCoordinatesIndex = Math.floor(nextStationCoordinatesIndex);
-                }
+             
+                nextStationCoordinatesIndex -= (currentRange < carRange) ? Math.floor(routeObject.geometry.coordinates.length / ((routeDistance * 1.75) / currentRange)) : 0;
 
                 nextStationCoordinates = (nextStationCoordinatesIndex < routeObject.geometry.coordinates.length ? routeObject.geometry.coordinates[nextStationCoordinatesIndex] : (routeObject.geometry.coordinates[routeObject.geometry.coordinates.length - 1]));
 
@@ -144,7 +141,7 @@ $(document).ready(function () {
                             "&compact=true" + 
                             "&longitude=" + nextStationCoordinates[0] + 
                             "&latitude=" + nextStationCoordinates[1] + 
-                            "&distance=20" //+ ((stop === 0 ? ((currentRange < carRange) ? currentRange : carRange) : carRange) / 1.5);    // As the distance is radial, half of car range is needed.
+                            "&distance=50"// + ((stop === 0 ? ((currentRange < carRange) ? currentRange : carRange) : carRange) / 2);    // As the distance is radial, at least half of car range is needed.
 
                     // Do API call        
                     ocmResponseObject = await fetch(ocmApiAddress)
@@ -190,10 +187,6 @@ $(document).ready(function () {
         // Add inputDestination's coordinates to rousteCoordinates array.
         if (routeCoordinates.length === (totalStops + 1))
             routeCoordinates.push($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
-
-        console.log(stationSelected);
-        console.log(routeCoordinates);
-        console.log($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
 
         if (routeCoordinates.length === (totalStops + 2)) {
             // Generate link with all the coordinates (add all the coordinates in a string separated by '/')
