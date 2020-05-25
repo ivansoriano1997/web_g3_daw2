@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="css/index.css">
 
 
-    <title>Registre usuaris</title>
+    <title>Login</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 

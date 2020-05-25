@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../model/CarModel.php");
 
     <!-- <script src="controlador.js" charset="utf-8"></script> -->
 
-    <title>Registre usuaris</title>
+    <title>Vehicles suportats</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
