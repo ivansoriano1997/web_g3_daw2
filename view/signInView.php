@@ -25,21 +25,23 @@
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout__title">Material Design Lite</span>
+      <span class="mdl-layout__title">g3d2</span>
+
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="#">Hello</a>
-          <a class="mdl-navigation__link" href="#">World.</a>
-          <a class="mdl-navigation__link" href="#">How</a>
-          <a class="mdl-navigation__link" href="#">Are</a>
-          <a class="mdl-navigation__link" href="#">You?</a>
+
+        <a class="mdl-navigation__link" href="/">Inici</a>
+
+        <a class="mdl-navigation__link" href="/cars">Cotxes suportats</a>
+
+        <a class="mdl-navigation__link" href="/route">Planificador de rutes</a>
         </nav>
       </div>
-      <main class="mdl-layout__content">
+      <main class="mdl-layout__content loginImage">
         <div>
  
 
 
-      <br><br><br><br><center>
+      <center>
       <form action="/singup/newuser" method="POST">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">

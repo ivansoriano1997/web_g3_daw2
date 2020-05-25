@@ -33,13 +33,14 @@
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout__title">Material Design Lite</span>
+        <span class="mdl-layout__title">g3d2</span>
         <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="#">Hello</a>
-          <a class="mdl-navigation__link" href="#">World.</a>
-          <a class="mdl-navigation__link" href="#">How</a>
-          <a class="mdl-navigation__link" href="#">Are</a>
-          <a class="mdl-navigation__link" href="#">You?</a>
+
+          <a class="mdl-navigation__link" href="/">Inici</a>
+
+          <a class="mdl-navigation__link" href="/cars">Cotxes suportats</a>
+
+          <a class="mdl-navigation__link" href="/route">Planificador de rutes</a>
         </nav>
       </div>
       <main class="mdl-layout__content">
