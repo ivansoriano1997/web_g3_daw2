@@ -85,9 +85,9 @@ $result =  $usuario->getAllCars();
 while($row = $result->fetch_assoc()) {
 
 $usuario=new signInModel();
-//   ?>
-//      <option value="<?=$row['id']?>"><?=$row['brand']?>:&nbsp;<?=$row['model']?></option>
-//      <?php
+    ?>
+    <option value="<?=$row['id']?>"><?=$row['brand']?>:&nbsp;<?=$row['model']?></option>
+    <?php
 }
 
 
@@ -100,11 +100,6 @@ $usuario=new signInModel();
               Registre
             </button>
 
-            <?php
-// $usuario=new signInModel();
-// echo $usuario->getAllCars();
- 
-              ?>
           </form>
     </center>
 

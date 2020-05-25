@@ -32,7 +32,7 @@ class LoginController extends BaseController {
     <script>
     if (parseInt(<?=$js->num_rows?>) == 0){
         alert("Usuari incorrecte!");
-      location.href = "https://g3daw2.com";
+      location.href = "/";
     }else{
         alert("Usuari correcte!");
 

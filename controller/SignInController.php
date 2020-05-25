@@ -44,7 +44,7 @@ class SignInController extends BaseController {
             ?>
             <script>
               alert("S'ha produït un error, si us plau ompli tots els camps! ");
-              location.href = "https://g3daw2.com";
+              location.href = "/";
             </script>
             <?php
           }
