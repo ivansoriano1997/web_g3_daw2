@@ -101,7 +101,7 @@ $(document).ready(function () {
         routeObject = await getRoute(inputOriginLatitude, inputOriginLongitude, inputDestinationLatitude, inputDestinationLongitude); 
         routeObject = routeObject.routes[0];
         routeHasHighway = routeObject.extras.waytypes.summary.findIndex(wayType => wayType.value === 1 || wayType.value === 2) > 0;
-        routeDistance = routeObject.summary.distance; // 20% more km are added to route (the inputOriginal distance doesn't consider the deviations).
+        routeDistance = routeObject.summary.distance;
 
         // carRange: user car's range. If the route has highways or not, get highway range or city range.
         let carRange = routeHasHighway ? parseInt($("input#inputCarCityRange").val()): parseInt($("input#inputCarHighwayRange").val());
@@ -144,7 +144,7 @@ $(document).ready(function () {
                             "&compact=true" + 
                             "&longitude=" + nextStationCoordinates[0] + 
                             "&latitude=" + nextStationCoordinates[1] + 
-                            "&distance=" + ((stop === 0 ? ((currentRange < carRange) ? currentRange : carRange) : carRange) / 1.5);    // As the distance is radial, half of car range is needed.
+                            "&distance=20" //+ ((stop === 0 ? ((currentRange < carRange) ? currentRange : carRange) : carRange) / 1.5);    // As the distance is radial, half of car range is needed.
 
                     // Do API call        
                     ocmResponseObject = await fetch(ocmApiAddress)
@@ -165,7 +165,7 @@ $(document).ready(function () {
     }
 
     // Show Google Maps Link to get navigation details
-    function showGoogleMapsLink(totalStops) {
+    function showGoogleMapsLink(totalStops, stationSelected) {
         // routeCoordinates (Array): add and get all the route's coordinates.
         // address: Google Maps Link with all the route's coordinates.
         let routeCoordinates = [], googleMapsAddress = "https://www.google.com/maps/dir/";
@@ -177,10 +177,23 @@ $(document).ready(function () {
 
         // Add stations' coordinates* to routeCoordinates array. 
         // *Get stations' coordinates from the value of the selected option of each select of stations.
-        $("div#stations div#divStationsList ul li.selected").each(function() { routeCoordinates.push($(this).data("val")); });
+        $("div#stations div#divStationsList ul li.selected").each(function() { 
+            if($(this).parent()[0] !== $(stationSelected).parent()[0])
+                routeCoordinates.push($(this).data("val"));
+            else
+                routeCoordinates.push($(stationSelected).data("val"));
+        });
+
+        if (routeCoordinates.length < (totalStops + 1))
+            routeCoordinates.push($(stationSelected).data("val"));
 
         // Add inputDestination's coordinates to rousteCoordinates array.
-        routeCoordinates.push($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
+        if (routeCoordinates.length === (totalStops + 1))
+            routeCoordinates.push($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
+
+        console.log(stationSelected);
+        console.log(routeCoordinates);
+        console.log($("input#inputDestinationLatitude").val().toString() + "," + $("input#inputDestinationLongitude").val().toString());
 
         if (routeCoordinates.length === (totalStops + 2)) {
             // Generate link with all the coordinates (add all the coordinates in a string separated by '/')
@@ -292,7 +305,7 @@ $(document).ready(function () {
                     });
 
                     liStation.click(showOpenChargeMap);
-                    liStation.click(function() { showGoogleMapsLink(stationsObject.route.stops) });
+                    liStation.click(function() { showGoogleMapsLink(stationsObject.route.stops, $(this)) });
 
                     ulStations.append(liStation);
                 });
@@ -332,11 +345,7 @@ $(document).ready(function () {
                                     "<li class='mdl-list__item'>" +
                                         "<span class='mdl-list__item-primary-content'>" +
                                             "<i class='material-icons mdl-list__item-icon'>map</i>" + 
-                                            "<b>Distància:</b>" +
-                                            "<ul>" + 
-                                                "<li><i>Sense desviacions</i>: " +  stationsObject.route.distance.toFixed(2) + "</li>" +
-                                                "<li><i>Amb desviacions</i>: " + (stationsObject.route.distance * 1.20).toFixed(2) + "</li>" +
-                                            "</ul>" +
+                                            "<b>Distància:</b>" + stationsObject.route.distance.toFixed(2) + " km (Sense desviacions)" +
                                         "</span>" +
                                     "</li>" +
                                     "<li class='mdl-list__item'>" +
