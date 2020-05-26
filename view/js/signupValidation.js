@@ -114,8 +114,8 @@ function dialag(titol, mistage) {
  '<h4 class="mdl-dialog__title">'+titol+'</h4>'+
  '<div class="mdl-dialog__content">'+
  '<p>'+mistage+'</p>'+
- '<div class="mdl-dialog__actions mdl-dialog__actions--full-width" onclick="closedialog()">'+
- '<button type="button" class="mdl-button">Acceptar</button>'+
+ '<div class="mdl-dialog__actions">'+
+ '<button type="button" class="mdl-button" onclick="closedialog()">Acceptar</button>'+
  '</div>'+
  '</dialog>'+    
  '<script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.1/dialog-polyfill.min.js" integrity="sha256-B4Jb9j0PE2EzFJ6NaPkoJXDcQtQYR0Zd3DJKeYLifbg=" crossorigin="anonymous"></script>'+
