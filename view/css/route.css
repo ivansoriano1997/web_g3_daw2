@@ -155,9 +155,12 @@ button.mdl-button--fab {
 }
 
 @media (max-width: 1024px) {
+    div#stations {
+        height: 100%;
+    }
+
     div#stations aside {
         width: 100%;
-        height: 100%;
         margin: 0;
     }
 
