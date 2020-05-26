@@ -138,7 +138,7 @@ button.mdl-button--fab {
 
     div#stations {
         width: 100%;
-        height: auto;
+        height: 100%;
         overflow: auto;
         flex-direction: column;
     }
@@ -157,7 +157,7 @@ button.mdl-button--fab {
 @media (max-width: 1024px) {
     div#stations aside {
         width: 100%;
-        height: auto;
+        height: 100%;
         margin: 0;
     }
 
