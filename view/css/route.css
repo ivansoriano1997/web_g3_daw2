@@ -54,12 +54,12 @@ div#stations {
     height: 100%;
     width: 90%;
     display: flex;
+    align-items: center;
     padding: 0 30px;
 }
 
 div#stations ul#routeDetails {
     width: 60%;
-    height: 100%;
 }
 
 div#stations ul#routeDetails a#googleMapsLink {
@@ -98,7 +98,7 @@ div#stations ul#routeDetails div#divStationsList div.getmdl-select {
 }
 
 div#stations div#map {
-    min-height: 600px;
+    height: 600px;
     width: 60%;
     display: flex;
     align-items: center;
