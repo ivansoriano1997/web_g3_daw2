@@ -48,13 +48,14 @@
                     <?php
                         $dialogTitle = "Carregant les estacions!";
                         $dialogContent = "Depenent de la distància de la ruta, el sistema pot tardar força temps a obtenir les estacions. Si us plau, espera!";
-
-                        require_once(__DIR__ . "/dialog/loadingDialog.php"); 
                     ?>
                 </div>
-
-                <?php require_once(__DIR__ . "/base/baseFooter.php"); ?>
             </main>
+
+            <?php
+                require_once(__DIR__ . "/dialog/loadingDialog.php"); 
+                require_once(__DIR__ . "/base/baseFooter.php"); 
+            ?>
         </div>
 
         <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored" style="display:none;">

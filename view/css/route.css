@@ -1,10 +1,3 @@
-div.mdl-layout button.mdl-button--fab  {
-    position: fixed;
-    bottom: 50px;
-    right: 50px;
-    z-index: 1000;
-}
-
 main.mdl-layout__content {
     background-image: url("../img/route-background.png");
     background-size: cover;                     
@@ -12,7 +5,7 @@ main.mdl-layout__content {
     background-position: center center;
 }
 
-div.page-content {
+/* div.page-content {
     width: calc(100% - 240px);
     height: 100vh;
     display: flex;
@@ -20,7 +13,7 @@ div.page-content {
     align-items: center;
     justify-content: center;
     padding: 50px;
-} 
+}  */
 
 form#planner, div#stations {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -49,7 +42,7 @@ form#planner span.ap-dropdown-menu {
     text-align: left; 
 }
 
-form#planner div.mdl-textfield input.mdl-textfield__input, div#stations aside div#divStationsList div.getmdl-select input.mdl-textfield__input{
+form#planner div.mdl-textfield input.mdl-textfield__input, div#stations div#divStationsList div.getmdl-select input.mdl-textfield__input{
     padding-right: 36px;
 }
 
@@ -57,50 +50,50 @@ form#planner button.mdl-button[type="submit"] {
     margin-top: 20px;
 }
 
-
 div#stations {
+    height: 90%;
+    width: 90%;
     display: flex;
-    align-items: center;
-    width: 100%;
     padding: 30px;
 }
 
-div#stations aside {
-    width: 40%;
+div#stations ul#routeDetails {
+    width: 60%;
     height: 100%;
 }
 
-div#stations aside a#googleMapsLink {
+div#stations ul#routeDetails a#googleMapsLink {
     text-decoration: none;
     color: #000;
 }
 
-div#stations aside ul#routeDetails li.mdl-list__item {
+div#stations ul#routeDetails li.mdl-list__item {
     text-align: left;
 }
 
-div#stations aside ul#routeDetails li#stopsDetails {
+div#stations ul#routeDetails li#stopsDetails {
     overflow: visible;
 }
 
-div#stations aside ul#routeDetails li.mdl-list__item .mdl-list__item-icon, div#stations aside ul#routeDetails li.mdl-list__item b {
+div#stations ul#routeDetails li#navigation {
+    display: flex;
+    justify-content: center;
+}
+
+div#stations ul#routeDetails li.mdl-list__item b {
     margin-right: 12px;
 } 
 
-div#stations aside ul#routeDetails li.mdl-list__item ul {
+div#stations ul#routeDetails li.mdl-list__item ul {
     list-style: none;
     padding-left: 0px;
 }
 
-div#stations aside div#divStationsList {
+div#stations ul#routeDetails div#divStationsList {
     width: 100%;
 }
 
-div#stations aside div#divStationsList div.mdl-textfield {
-    width: 100%;
-}
-
-div#stations aside div#divStationsList div.getmdl-select {
+div#stations ul#routeDetails div#divStationsList div.getmdl-select {
     display: block;
 }
 
@@ -128,18 +121,30 @@ button.mdl-button--fab {
 }
 
 @media (max-width: 425px) {
+    form#planner div.mdl-textfield  {
+        width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
     form#planner {
         width: 100%;
     }
 
-    form#planner div.mdl-textfield  {
-        width: 300px;
+    form#planner div.mdl-textfield {
+        width: 100%;
     }
 
     div#stations {
-        width: 100%;
-        overflow: auto;
+        /* width: 100%; */
+        display: flex;
         flex-direction: column;
+        margin: 0;
+        /* padding: 20px; */
+    }
+
+    div#stations ul#routeDetails {
+        width: 100%;
     }
 
     div#stations ul#routeDetails li.mdl-list__item span.mdl-list__item-primary-content {
@@ -148,26 +153,23 @@ button.mdl-button--fab {
         text-align: center;
     }
 
-    div#stations ul#routeDetails li.mdl-list__item span.mdl-list__item-primary-content b {
+    div#stations ul#routeDetails li.mmdl-list__item span.mdl-list__item-primary-content b {
         margin: 10px 0;
     }
-}
 
-@media (max-width: 1024px) {
-    div#stations aside {
+    div#stations ul#routeDetails div#divStationsList {
         width: 100%;
-        height: auto;
-        margin: 0;
+        display: flex;
+        flex-direction: column;
     }
 
-    div#stations ul#routeDetails li.mdl-list__item {
-        text-align: left;
+    div#stations ul#routeDetails div#divStationsList div.getmdl-select {
+        width: 100%;
     }
 
     div#stations div#map {
-        margin-top: 24px;
         width: 100%;
-    }  
+    }
 }
 
 

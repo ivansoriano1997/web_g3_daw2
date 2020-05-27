@@ -167,7 +167,7 @@ $(document).ready(function () {
         // address: Google Maps Link with all the route's coordinates.
         let routeCoordinates = [], googleMapsAddress = "https://www.google.com/maps/dir/";
 
-        let center = $("<center />"), chipNavigation = "", chipNavigationAnchor = "";
+        let liItem = $("<li />", { id: "navigation", class: "mdl-list__item" }), chipNavigation = "", chipNavigationAnchor = "";
         
         // Add the inputOrigin's coordinates to routeCoordinates array
         routeCoordinates.push($("input#inputOriginLatitude").val().toString() + "," + $("input#inputOriginLongitude").val().toString());
@@ -213,7 +213,7 @@ $(document).ready(function () {
                         html: chipNavigationAnchor
                     })));
 
-                    $("div#stations aside").append(center.append(chipNavigation));
+                    $("div#stations ul#routeDetails").append(liItem.append(chipNavigation));
 
                 } else {
                     $("div#stations a#googleMapsLink").attr("href",  googleMapsAddress);
@@ -316,12 +316,11 @@ $(document).ready(function () {
         // stationsObject: stations details.
         let stationsObject = await getStations($("input#inputOriginLatitude").val(), $("input#inputOriginLongitude").val(), $("input#inputDestinationLatitude").val(), $("input#inputDestinationLongitude").val());
                 
-        let aside = "", listRouteDetails = "", liStopsDetails = "", spanStopDetails = "";
+        let listRouteDetails = "", liStopsDetails = "", spanStopDetails = "";
 
 		if ($("div#stations").length === 0)
 			$("form#planner").after("<div id='stations' />")
 
-        aside = $("<aside />");
         listRouteDetails = $("<ul class='mdl-list' id='routeDetails'>" + 
                                     "<li class='mdl-list__item'>" +
                                         "<span class='mdl-list__item-primary-content'>" +
@@ -370,10 +369,10 @@ $(document).ready(function () {
         listRouteDetails.append(liStopsDetails);
         listRouteDetails.append($("</ul>"));
     
-        $("div#stations").append(aside.append(listRouteDetails));
+        $("div#stations").append(listRouteDetails);
 
         if (stationsObject.route.stops > 0)
-            getmdlSelect.init("div#stations div#divStationsList div.getmdl-select");
+            getmdlSelect.init("div#stations div#divStationsList div.getmdl-select"); 
 
         $("div#stations").append($("<div/>", { id: "map"}));
     }
