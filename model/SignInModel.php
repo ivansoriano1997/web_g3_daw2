@@ -8,6 +8,7 @@ class SignInModel extends BaseModel {
     private $CarnetdeConduir;
     private $MarcaYModelDeCotxe;
     private $Password;
+    private $Cars;
 
     public function __construct() {
         parent::__construct();
@@ -33,6 +34,13 @@ class SignInModel extends BaseModel {
       $this->Password=$c;
     }
 
+    public function getCars() {
+      return $this->Cars;
+    }
+
+    public function setCars($cars) {
+        $this->Cars = $cars;
+    }
 
     public function addNewUser() {
 

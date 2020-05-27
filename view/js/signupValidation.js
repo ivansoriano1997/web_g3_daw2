@@ -34,7 +34,7 @@ $("input[name='drivingLicenseNumber']").keyup(function() {
 
 
     $( "#signup" ).click(function() {
-        var user=$('input[name=CorreuElectronic]').val(), pass=$('input[name=Contrasenya]').val(), carnet=$('#inputDrivingLicenseNumber').val(), model=$('select[name=MarcaYModelDeCotxe]').val();
+        var user=$('input[name=CorreuElectronic]').val(), pass=$('input[name=Contrasenya]').val(), carnet=$('#inputDrivingLicenseNumber').val(), model=$('input[name=MarcaYModelDeCotxe]').val();
         var success=0;
         //test carnet
 

@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
     <link rel="stylesheet" href="view/css/signup.css">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.css" integrity="sha256-/uITMCYKvqTkeEX6Pz4AJjTpeV2FLqwOt+ZuW73YkeI=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.js" integrity="sha256-TSN0VaHOm98UdTMnVqrxc3lgeddDA1kUIJRN8cc2wGI=" crossorigin="anonymous"></script>        
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   </head>
 
@@ -68,31 +71,19 @@
             </div>
             <br>
 
-            <!-- <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" name="MarcaYModelDeCotxe" placeholder="Marca i model de cotxe">
-              <label class="mdl-textfield__label" for="sample1">Marca i model de cotxe</label>
-            </div><br> -->
-
-            <div class="mdl-textfield mdl-js-textfield">
-              <select class="mdl-textfield__input" type="text" name="MarcaYModelDeCotxe">
-                <option value="NULL">--Marca i model de cotxe--</option>
-
-<?php
-
-$usuario=new signInModel();
-
-$result =  $usuario->getAllCars();
-while($row = $result->fetch_assoc()) {
-
-$usuario=new signInModel();
-    ?>
-    <option value="<?=$row['id']?>"><?=$row['brand']?>:&nbsp;<?=$row['model']?></option>
-    <?php
-}
-
-
-
-?>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label getmdl-select getmdl-select__fix-height">
+              <input type="text" value="" class="mdl-textfield__input" id="MarcaYModelDeCotxe" readonly>
+              <input type="hidden" value="" name="MarcaYModelDeCotxe">
+              <i class="mdl-icon-toggle__label material-icons">keyboard_arrow_down</i>
+              <label for="MarcaYModelDeCotxe" class="mdl-textfield__label">Marca i model de cotxe</label>
+              <ul for="MarcaYModelDeCotxe" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+                  <?php
+                    foreach ($cars->getCars() as $car) {
+                  ?>
+                  <li class="mdl-menu__item" data-val="<?=$car->getId()?>"><?=$car->getBrand()?>:&nbsp;<?=$car->getModel()?></li>
+                  <?php
+                    }
+                  ?>
               </select>
             </div><br>
 

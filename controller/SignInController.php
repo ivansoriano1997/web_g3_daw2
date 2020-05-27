@@ -12,35 +12,35 @@ class SignInController extends BaseController {
   }
 
   public static function index() {
-    parent::view("signIn");
+    $carModel = new CarModel();
+    $carsArray = $carModel->getAllCars();
+
+    $signInModel = new signInModel();
+    $signInModel->setCars($carsArray);
+
+    $signInModelArray = array("cars" => $signInModel);
+
+    parent::view("signIn", $signInModelArray);
   }
 
   public static function addNewUser(){
     if(isset($_POST["CorreuElectronic"]) && $_POST["CorreuElectronic"]!=""){
-               //Creamos un usuario
-               $usuario=new signInModel();
-               $usuario->setCorreuElectronic($_POST["CorreuElectronic"]);
-               $usuario->setCarnetdeConduir($_POST["drivingLicenseNumber"] . $_POST["drivingLicenseLetter"]);
-               $usuario->setMarcaYModelDeCotxe($_POST["MarcaYModelDeCotxe"]);
-               $usuario->setPassword(md5($_POST["Contrasenya"]));
-               $save = $usuario->addNewUser();
+      //Creamos un usuario
+      $usuario =  new signInModel();
+      $usuario->setCorreuElectronic($_POST["CorreuElectronic"]);
+      $usuario->setCarnetdeConduir($_POST["drivingLicenseNumber"] . $_POST["drivingLicenseLetter"]);
+      $usuario->setMarcaYModelDeCotxe($_POST["MarcaYModelDeCotxe"]);
+      $usuario->setPassword(md5($_POST["Contrasenya"]));
+      $save = $usuario->addNewUser();
 
-               if ($save){
-                  session_start();
-                   $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();		  
-                   echo true;
-               }else{
-                 
-                echo false;
-
-               }
-
-           //$this->redirect("Usuarios", "index");
-
-
-  }
-
-
-}
+      if ($save){
+        session_start();
+          $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();		  
+          echo true;
+      } else {
+        echo false;
+      }
+    }
+  } 
 }
 ?>
