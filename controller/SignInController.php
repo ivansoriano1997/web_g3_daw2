@@ -24,30 +24,17 @@ class SignInController extends BaseController {
                $usuario->setMarcaYModelDeCotxe($_POST["MarcaYModelDeCotxe"]);
                $usuario->setPassword(md5($_POST["Contrasenya"]));
                $save = $usuario->addNewUser();
-?>
-               <script>
-               if (<?=$save?>){
-                   alert("Usuari enregistrat correctament!");
-<?php
-                   session_start();
-                   $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();
-?>
-				   location.href = location.protocol + "//" + location.hostname + ":" + location.port + "/route";
+
+               if ($save){
+                  session_start();
+                   $_SESSION["userCar"] = $usuario->getMarcaYModelDeCotxe();		  
+                   echo true;
                }else{
-                 alert("S'ha produït un error!!");
-                 location.href = location.protocol + "//" + location.hostname + ":" + location.port + "/route";
+                 
+                echo false;
 
                }
-               </script>
-<?php
-          }else {
-            ?>
-            <script>
-              alert("S'ha produït un error, si us plau ompli tots els camps! ");
-              location.href = "https://g3daw2.com";
-            </script>
-            <?php
-          }
+
            //$this->redirect("Usuarios", "index");
 
 
@@ -55,5 +42,5 @@ class SignInController extends BaseController {
 
 
 }
-
+}
 ?>

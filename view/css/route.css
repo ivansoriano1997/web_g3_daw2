@@ -136,8 +136,14 @@ button.mdl-button--fab {
     }
 
     div#stations {
+<<<<<<< HEAD
         /* width: 100%; */
         display: flex;
+=======
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+>>>>>>> 641e538c90e9fa26826a5d9b61c6ac3d5c0c75f7
         flex-direction: column;
         margin: 0;
         /* padding: 20px; */
@@ -157,10 +163,21 @@ button.mdl-button--fab {
         margin: 10px 0;
     }
 
+<<<<<<< HEAD
     div#stations ul#routeDetails div#divStationsList {
         width: 100%;
         display: flex;
         flex-direction: column;
+=======
+@media (max-width: 1024px) {
+    div#stations {
+        height: 100%;
+    }
+
+    div#stations aside {
+        width: 100%;
+        margin: 0;
+>>>>>>> 641e538c90e9fa26826a5d9b61c6ac3d5c0c75f7
     }
 
     div#stations ul#routeDetails div#divStationsList div.getmdl-select {
