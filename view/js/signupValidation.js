@@ -55,17 +55,17 @@ $("input[name='drivingLicenseNumber']").keyup(function() {
         if (user=="" || user==undefined || user=="NULL"){            
            $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de correu electrònic vàlid!", 1));
            $('.errosSignup').show();
-           $('.errosSignup').css('z-index', '1');
+           $('.errosSignup').css('z-index', '2');
         }else{success++;}
         if (pass=="" || pass==undefined || pass=="NULL") {
             $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de contrasenya vàlid!", 1));
             $('.errosSignup').show();
-            $('.errosSignup').css('z-index', '1');           
+            $('.errosSignup').css('z-index', '2');           
         }else{success++;}
         if(model=="" || model==undefined || model=="NULL"){
             $('#dialag').html(dialag('Error!', "Si us plau, selecciona un marca i model de cotxe vàlid!", 1));
             $('.errosSignup').show();
-            $('.errosSignup').css('z-index', '1');   
+            $('.errosSignup').css('z-index', '2');   
         }else{success++;}
 
         if(success==3){
@@ -86,7 +86,7 @@ $("input[name='drivingLicenseNumber']").keyup(function() {
                    
                         $('#dialag').html(dialag('Ara ja formes part del g3d2!', "Usuari enregistrat correctament!", 2));
                         $('.errosSignup').show();
-                        $('.errosSignup').css('z-index', '1');   
+                        $('.errosSignup').css('z-index', '2');   
           
                     }
                
