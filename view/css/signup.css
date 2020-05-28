@@ -6,15 +6,13 @@ div#divDrivingLicenseLetter.w-25 {
     width: calc(300px * 0.25);
 }
 
-form{
+form {
     margin-top: 14%;
     padding: 30px;
     width: 25%;
-    /* border: 3px solid #3F51B5; */
-    /* border-radius: 25px; */
+    background-color: #f8f9fa ;
     background-color:white ;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
   }
 
 
@@ -28,10 +26,16 @@ form{
     background-repeat: no-repeat;
   }
 
+  button.mdl-button {
+    margin-bottom: 10px;
+  }
+
   @media only screen and (max-width: 600px) {
     form {
+
       margin-top: 34%;
     width: 80%;
+
     }
     #loginIMGV{
       background: url('../../img/4957136.jpg') center / cover;
