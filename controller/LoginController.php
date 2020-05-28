@@ -58,12 +58,12 @@ class LoginController extends BaseController {
     <script>
     if (parseInt(<?=$js->num_rows?>) == 0){
       
-      $('#dialag').html(loginEror("Error!", "Usuari incorrecte."));
+      $('#dialag').html(loginEror("Error!", "Usuari incorrecte.", 1));
             $('.errosSignup').show();
             $('.errosSignup').css('z-index', '1');   
 
     }else{
-          $('#dialag').html(loginEror("Benvingut/da!", "Usuari correcte."));
+          $('#dialag').html(loginEror("Benvingut/da!", "Usuari correcte.", 2));
             $('.errosSignup').show();
             $('.errosSignup').css('z-index', '1');    
     
@@ -86,8 +86,9 @@ class LoginController extends BaseController {
 
 
 <script>
-function loginEror(titol, mistage){
-  return  '<html>'+
+function loginEror(titol, mistage, n){
+  if(n==1){
+    return  '<html>'+
     '<head>'+
         '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.1/dialog-polyfill.min.css" integrity="sha256-qVjBFbunjrWQ4IikV5dkK1ziW9XKskisX1rUbCIJEhk=" crossorigin="anonymous" />'+
     '</head>'+
@@ -105,6 +106,29 @@ function loginEror(titol, mistage){
  
  '</body>'+
  '</html>';
+  }
+
+if(n==2){
+  return  '<html>'+
+    '<head>'+
+        '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.5.1/dialog-polyfill.min.css" integrity="sha256-qVjBFbunjrWQ4IikV5dkK1ziW9XKskisX1rUbCIJEhk=" crossorigin="anonymous" />'+
+    '</head>'+
+    '<body>'+
+ 
+ '<dialog class="mdl-dialog errosSignup">'+
+
+ '<h4 class="mdl-dialog__title">'+titol+'</h4>'+
+ '<div class="mdl-dialog__content">'+
+ '<p>'+mistage+'</p>'+
+ '<div class="mdl-dialog__actions">'+
+ '<a type="button" class="mdl-button" href="/route">Acceptar</a>'+
+ '</div>'+
+ '</dialog>'+    
+ 
+ '</body>'+
+ '</html>';
+}
+
 }
 
 </script>
