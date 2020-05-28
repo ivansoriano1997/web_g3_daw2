@@ -1,27 +1,3 @@
-<!DOCTYPE html>
-<html lang="cat">
-<head>
-<meta charset="utf-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<link rel="stylesheet" href="view/css/signup.css">
-
-
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<link rel="stylesheet" href="../view/css/signup.css">
-
-
-</head>
-<body id="loginIMGV"> 
 
 <?php
 
@@ -40,7 +16,7 @@ class LoginController extends BaseController {
 
   public static function login(){
 
-  if (isset($_POST["CorreuElectronic"])) {
+  if (isset($_POST["CorreuElectronic"]) || isset($_POST["Contrasenya"])) {
     $user=new LoginModel();
     $user->setCorreuElectronic($_POST["CorreuElectronic"]);
     $user->setPassword(md5($_POST["Contrasenya"]));
@@ -54,7 +30,25 @@ class LoginController extends BaseController {
         $_SESSION["userCar"] = $user2["MarcaYModelDeCotxe"];
     }
 ?>
+<!DOCTYPE html>
+<html lang="cat">
+<head>
+<meta charset="utf-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+
+<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" href="../view/css/signup.css">
+
+
+</head>
+<body id="loginIMGV"> 
     <script>
     if (parseInt(<?=$js->num_rows?>) == 0){
       
