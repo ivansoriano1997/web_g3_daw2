@@ -17,6 +17,12 @@ form{
 
   }
 
+
+  #loginIMGV{
+    background: url('../../img/3339154.jpg') center / cover;
+    background-repeat: no-repeat;
+
+  }
   .loginImage{
     background: url('../../img/3339154.jpg') center / cover;
     background-repeat: no-repeat;
@@ -24,6 +30,16 @@ form{
 
   @media only screen and (max-width: 600px) {
     form {
+      margin-top: 34%;
     width: 80%;
     }
+    #loginIMGV{
+      background: url('../../img/4957136.jpg') center / cover;
+      background-repeat: no-repeat;
+  
+    }
   }
+
+
+
+

@@ -70,7 +70,7 @@
                             Login
                           </button>
 
-                          <br><a href="/signup">Registre</a>
+                          <br><br><a href="/signup">Registre</a>
                         </form>
                   </center>
 
