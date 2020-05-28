@@ -56,7 +56,7 @@
 
 
                 <center>
-                        <form action="/login/validation" method="post">
+                        <form action="/login/validation" method="post" class="divRL">
                           <div class="mdl-textfield mdl-js-textfield">
                             <input class="mdl-textfield__input" type="text" name="CorreuElectronic" id="CorreuElectronic" placeholder="Correu electrònic / usuari">
                             <label class="mdl-textfield__label" for="sample1">Correu electrònic / usuari</label>

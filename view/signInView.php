@@ -46,7 +46,7 @@
 
       <center>
 
-      <form>
+      <form class="divRL">
             <div class="mdl-textfield mdl-js-textfield">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">
               <label class="mdl-textfield__label"  for="sample1">Correu electrònic / usuari</label>
@@ -90,7 +90,8 @@
             <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="signup">
               Registre
             </button>
-
+            <br><br><a href="/">Login</a>
+            
           </form>
     </center>
 

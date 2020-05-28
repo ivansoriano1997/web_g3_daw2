@@ -37,6 +37,10 @@ form {
     width: 80%;
 
     }
+    .divRL{
+      margin-top: 30%;
+    }
+
     #loginIMGV{
       background: url('../../img/4957136.jpg') center / cover;
       background-repeat: no-repeat;
