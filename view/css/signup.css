@@ -20,8 +20,12 @@ form {
     background-repeat: no-repeat;
   }
 
+  button.mdl-button {
+    margin-bottom: 10px;
+  }
+
   @media only screen and (max-width: 600px) {
     form {
-    width: 80%;
+      width: 80%;
     }
   }
