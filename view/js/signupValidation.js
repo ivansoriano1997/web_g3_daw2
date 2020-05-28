@@ -33,76 +33,77 @@ $("input[name='drivingLicenseNumber']").keyup(function() {
 
 
 
-    $( "#signup" ).click(function() {
-        var user=$('input[name=CorreuElectronic]').val(), pass=$('input[name=Contrasenya]').val(), carnet=$('#inputDrivingLicenseNumber').val(), model=$('input[name=MarcaYModelDeCotxe]').val();
-        var success=0;
-        //test carnet
-
-
-            if ($("input[name='drivingLicenseNumber']").val() === "" && ($("input[type='hidden']#dialogAccepted").val() === "false")) {
-                $("dialog")[0].showModal();
-            
-            }
-        
-       
-     
-       
-       $("dialog button.close").click(function() {
-           $("input[type='hidden']#dialogAccepted").val("true");
-       
-       })
-        //test carnet
-        if (user=="" || user==undefined || user=="NULL"){            
-           $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de correu electrònic vàlid!", 1));
-           $('.errosSignup').show();
-           $('.errosSignup').css('z-index', '2');
-        }else{success++;}
-        if (pass=="" || pass==undefined || pass=="NULL") {
-            $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de contrasenya vàlid!", 1));
-            $('.errosSignup').show();
-            $('.errosSignup').css('z-index', '2');           
-        }else{success++;}
-        if(model=="" || model==undefined || model=="NULL"){
-            $('#dialag').html(dialag('Error!', "Si us plau, selecciona un marca i model de cotxe vàlid!", 1));
-            $('.errosSignup').show();
-            $('.errosSignup').css('z-index', '2');   
-        }else{success++;}
-
-        if(success==3){
-            var _data = {
-                "CorreuElectronic": user,
-                "Contrasenya" : pass,
-                "carnet" : carnet,
-                "MarcaYModelDeCotxe" : model  
-                
-            };
-
-            $.ajax({    
-                data : _data,
-                url : "/singup/newuser",
-                type: 'post',
-                success : function (success) {
-                    if (success) {
-                   
-                        $('#dialag').html(dialag('Ara ja formes part del g3d2!', "Usuari enregistrat correctament!", 2));
-                        $('.errosSignup').show();
-                        $('.errosSignup').css('z-index', '2');   
-          
-                    }
-               
-                }
-
-            });
-
-           
-        }
-
-
-
-
-      });
+   
 });
 
+function signupRedy() {
+    var user=$('input[name=CorreuElectronic]').val(), pass=$('input[name=Contrasenya]').val(), carnet=$('#inputDrivingLicenseNumber').val(), model=$('input[name=MarcaYModelDeCotxe]').val();
+    var success=0;
+    //test carnet
+
+
+        if ($("input[name='drivingLicenseNumber']").val() === "" && ($("input[type='hidden']#dialogAccepted").val() === "false")) {
+            $("dialog")[0].showModal();
+        
+        }
+    
+   
+ 
+   
+   $("dialog button.close").click(function() {
+       $("input[type='hidden']#dialogAccepted").val("true");
+   
+   })
+    //test carnet
+    if (user=="" || user==undefined || user=="NULL"){            
+       $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de correu electrònic vàlid!", 1));
+       $('.errosSignup').show();
+       $('.errosSignup').css('z-index', '10');
+    }else{success++;}
+    if (pass=="" || pass==undefined || pass=="NULL") {
+        $('#dialag').html(dialag('Error!', "Si us plau, posa un camp de contrasenya vàlid!", 1));
+        $('.errosSignup').show();
+        $('.errosSignup').css('z-index', '10');           
+    }else{success++;}
+    if(model=="" || model==undefined || model=="NULL"){
+        $('#dialag').html(dialag('Error!', "Si us plau, selecciona un marca i model de cotxe vàlid!", 1));
+        $('.errosSignup').show();
+        $('.errosSignup').css('z-index', '10');   
+    }else{success++;}
+
+    if(success==3){
+        var _data = {
+            "CorreuElectronic": user,
+            "Contrasenya" : pass,
+            "carnet" : carnet,
+            "MarcaYModelDeCotxe" : model  
+            
+        };
+
+        $.ajax({    
+            data : _data,
+            url : "/singup/newuser",
+            type: 'post',
+            success : function (success) {
+                if (success) {
+               
+                    $('#dialag').html(dialag('Ara ja formes part del g3d2!', "Usuari enregistrat correctament!", 2));
+                    $('.errosSignup').show();
+                    $('.errosSignup').css('z-index', '10');   
+      
+                }
+           
+            }
+
+        });
+
+       
+    }
+
+
+
+
+}
 
 function dialag(titol, mistage, n) {
 if (n==1) {

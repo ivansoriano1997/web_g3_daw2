@@ -41,6 +41,8 @@
         </nav>
       </div>
       <main class="mdl-layout__content loginImage">
+    <div id="dialag"></div>
+
         <div>
  
 
@@ -87,7 +89,7 @@
               </select>
             </div><br>
 
-            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="signup">
+            <button type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" onclick="signupRedy();">
               Registre
             </button>
             <br><br><a href="/">Login</a>
@@ -102,7 +104,6 @@
     </div>
     <?php require_once(__DIR__ . "/dialog/noDrivingLicenseDialog.php"); ?>
     <input type="hidden" id="dialogAccepted" value="false">
-    <div id="dialag"></div>
 
     <script src="view/js/signup.js"></script>
     <script src="view/base/js/baseDialog.js"></script>
