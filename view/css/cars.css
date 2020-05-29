@@ -19,6 +19,6 @@
 
   footer.mdl-mega-footer {
     margin-top: 20px;
-    margin-left: 0;
-    width: 100%;
+    margin-left: 0 !important;
+    width: 100% !important;
   }
