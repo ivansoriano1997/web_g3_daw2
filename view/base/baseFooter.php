@@ -28,12 +28,12 @@
             <input class="mdl-mega-footer__heading-checkbox" type="checkbox" checked>
             <h1 class="mdl-mega-footer__heading">Tecnologies</h1>
             <ul class="mdl-mega-footer__link-list">
-              <li><a href="freepik.es">PHP + MVC</a></li>
-              <li><a href="getmdl.io">Material Design Lite</a></li>
+              <li><a href="https://www.php.net/">PHP + MVC</a></li>
+              <li><a href="https://getmdl.io/">Material Design Lite</a></li>
               <li><a href="https://www.plesk.com">Plesk</a></li>
-              <li><a href="github.com">GitHub</a></li>
-              <li><a href="code.visualstudio.com">Visual Studio Code</a></li>
-              <li><a href="atom.io">Atom</a></li>
+              <li><a href="https://github.com/">GitHub</a></li>
+              <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+              <li><a href="https://atom.io/">Atom</a></li>
             </ul>
           </div>
       </div>

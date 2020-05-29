@@ -22,7 +22,7 @@ require_once(__DIR__ . "/../model/CarModel.php");
 
     <!-- <script src="controlador.js" charset="utf-8"></script> -->
 
-    <title>Vehicles suportats</title>
+    <title>Cotxes suportats</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -64,7 +64,7 @@ require_once(__DIR__ . "/../model/CarModel.php");
 
 
           <br><br><br><br><center>
-<h2 class="h2taula">Vehicles suportats</h2>
+<h2 class="h2taula">Cotxes suportats</h2>
 <img class="imgTaula" src="img/3684723.jpg" alt="">
             <table class="mdl-data-table mdl-js-data-table">
   <thead>
