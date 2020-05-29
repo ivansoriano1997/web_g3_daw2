@@ -58,7 +58,7 @@ require_once(__DIR__ . "/../model/CarModel.php");
 
       </div>
 
-      <main class="mdl-layout__content contanerVehiclesSuportats imgTaulaCars">
+      <main class="carsTablediv mdl-layout__content contanerVehiclesSuportats imgTaulaCars">
 
         <div>
 

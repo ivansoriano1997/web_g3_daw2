@@ -4,6 +4,10 @@
 
   }
 
+  .carsTablediv{
+    overflow: scroll !important;
+  }
+
 
   .imgTaula{
     z-index:1;
