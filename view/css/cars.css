@@ -22,7 +22,16 @@
   }
 
   footer.mdl-mega-footer {
+    
     margin-top: 20px;
     margin-left: 0 !important;
     width: 100% !important;
   }
+
+  footer {
+
+    bottom: 0%;
+    position: fixed !important;
+    
+
+}
