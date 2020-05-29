@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>Planificador de rutes</title>
         <link rel="stylesheet" href="view/css/route.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.css" integrity="sha256-/uITMCYKvqTkeEX6Pz4AJjTpeV2FLqwOt+ZuW73YkeI=" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/getmdl-select@2.0.1/getmdl-select.min.js" integrity="sha256-TSN0VaHOm98UdTMnVqrxc3lgeddDA1kUIJRN8cc2wGI=" crossorigin="anonymous"></script>        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
