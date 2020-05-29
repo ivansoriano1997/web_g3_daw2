@@ -26,6 +26,12 @@ form {
     background-repeat: no-repeat;
   }
 
+  footer.mdl-mega-footer {
+    margin-top: 20px;
+    margin-left: 0;
+    width: 100%;
+  }
+
   button.mdl-button {
     margin-bottom: 10px;
   }
