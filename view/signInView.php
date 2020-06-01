@@ -49,11 +49,11 @@
       <center>
 
       <form class="divRL">
-            <div class="mdl-textfield mdl-js-textfield">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <input class="mdl-textfield__input" type="text" name="CorreuElectronic" placeholder="Correu electrònic">
               <label class="mdl-textfield__label"  for="sample1">Correu electrònic / usuari</label>
             </div><br>
-            <div class="mdl-textfield mdl-js-textfield">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="password" name="Contrasenya" placeholder="Contrasenya">
               <label class="mdl-textfield__label" for="sample1">Contrasenya</label>
             </div><br>

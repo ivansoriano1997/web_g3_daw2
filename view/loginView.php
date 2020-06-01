@@ -57,12 +57,12 @@
 
                 <center>
                         <form action="/login/validation" method="post" class="divRL">
-                          <div class="mdl-textfield mdl-js-textfield">
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="text" name="CorreuElectronic" id="CorreuElectronic" placeholder="Correu electrònic / usuari">
                             <label class="mdl-textfield__label" for="sample1">Correu electrònic / usuari</label>
 
                           </div><br>
-                          <div class="mdl-textfield mdl-js-textfield">
+                          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input class="mdl-textfield__input" type="password" name="Contrasenya" id="Contrasenya" placeholder="Contrasenya">
                             <label class="mdl-textfield__label" for="sample1">Contrasenya</label>
                           </div><br>
