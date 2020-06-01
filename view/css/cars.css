@@ -4,6 +4,10 @@
 
   }
 
+  .carsTablediv{
+    overflow: scroll !important;
+  }
+
 
   .imgTaula{
     z-index:1;
@@ -18,7 +22,22 @@
   }
 
   footer.mdl-mega-footer {
+    
     margin-top: 20px;
     margin-left: 0 !important;
     width: 100% !important;
   }
+  @media only screen and (max-width: 600px) {
+    footer {
+
+      bottom: 0%;
+      position: fixed !important;
+      
+  
+  }
+
+  table{
+    margin-bottom: 150px;
+  }
+  }
+

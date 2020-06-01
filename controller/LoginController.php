@@ -57,9 +57,7 @@ class LoginController extends BaseController {
             $('.errosSignup').css('z-index', '1');   
 
     }else{
-          $('#dialag').html(loginEror("Benvingut/da!", "Usuari correcte.", 2));
-            $('.errosSignup').show();
-            $('.errosSignup').css('z-index', '1');    
+          window.location = "/route";
     
     
   }
